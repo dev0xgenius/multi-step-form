@@ -1,3 +1,4 @@
+import React from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -8,6 +9,15 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+import CssBaseline from "@mui/material/CssBaseline";
+import { AppBar, Skeleton, Stack } from "@mui/material";
+
+import { Box, ThemeProvider } from "@mui/system";
+
+import '@fontsource/ubuntu/300.css';
+import '@fontsource/ubuntu/400.css';
+import '@fontsource/ubuntu/500.css';
+import '@fontsource/ubuntu/700.css';
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -23,6 +33,16 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export function HydrateFallback() {
+  return (
+    <Box>
+      <Skeleton variant="text" width="40%" height="2.5rem" />
+      <Skeleton variant="text" width="60%" height="1rem" />
+      <Skeleton variant="rectangular" width={100} height="60dvh" />
+    </Box>
+  );
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -33,16 +53,30 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <CssBaseline />
+        <AppBar sx={`
+          padding: 1rem;
+          box-shadow: 0px 0px 20px lightgrey;
+          background-color: darkblue;
+        `} position="static" color="primary">
+          <div>Tabs</div>
+        </AppBar>
+        <Box>
+          {children}
+        </Box>
         <ScrollRestoration />
         <Scripts />
       </body>
-    </html>
+    </html >
   );
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <ThemeProvider>
+      <Outlet />
+    </ThemeProvider>
+  )
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
