@@ -3,6 +3,7 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -10,9 +11,9 @@ import {
 
 import type { Route } from "./+types/root";
 import CssBaseline from "@mui/material/CssBaseline";
-import { AppBar, Skeleton, Stack } from "@mui/material";
+import { AppBar, Button, Skeleton } from "@mui/material";
 
-import { Box, ThemeProvider } from "@mui/system";
+import { Box, Container, Stack, ThemeProvider, createTheme } from "@mui/system";
 
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
@@ -33,16 +34,6 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-export function HydrateFallback() {
-  return (
-    <Box>
-      <Skeleton variant="text" width="40%" height="2.5rem" />
-      <Skeleton variant="text" width="60%" height="1rem" />
-      <Skeleton variant="rectangular" width={100} height="60dvh" />
-    </Box>
-  );
-};
-
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -54,20 +45,41 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <CssBaseline />
-        <AppBar sx={`
-          padding: 1rem;
-          box-shadow: 0px 0px 20px lightgrey;
-          background-color: darkblue;
-        `} position="static" color="primary">
-          <div>Tabs</div>
+        <AppBar position="static" component="header">
+          <Stack component="nav" useFlexGap={true} spacing="1rem" direction="row">
+            <NavLink to="/">
+              <Button variant="contained" color="secondary">1</Button>
+            </NavLink>
+            <NavLink to="/billing">
+              <Button variant="contained" color="secondary">2</Button>
+            </NavLink>
+            <NavLink to="/add-ons">
+              <Button variant="contained" color="secondary">3</Button>
+            </NavLink>
+            <NavLink to="/summary">
+              <Button variant="contained" color="secondary">4</Button>
+            </NavLink>
+          </Stack>
         </AppBar>
-        <Box>
+        <Box component="main">
           {children}
+        </Box>
+        <Box component="footer">
+          <Container>
+            <NavLink to="/">
+              {({ isActive }) => (
+                !isActive ? <Button>Go Back</Button> : <></>
+              )}
+            </NavLink>
+            <NavLink to="/">
+              <Button variant="contained">Next Step</Button>
+            </NavLink>
+          </Container>
         </Box>
         <ScrollRestoration />
         <Scripts />
       </body>
-    </html >
+    </html>
   );
 }
 

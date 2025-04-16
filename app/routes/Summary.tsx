@@ -12,7 +12,7 @@ export default function Summary({ }: Route.ComponentProps) {
         subheader="Double check everything looks OK before confirming"
       />
       <CardContent>
-        <Container sx={css`border: "1px solid red;`}>
+        <Container>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <Box>
               <Typography variant="h5">Arcade</Typography>
