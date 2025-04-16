@@ -9,17 +9,19 @@ import {
   ScrollRestoration,
 } from "react-router";
 
-import type { Route } from "./+types/root";
+import { AppBar, Button } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { AppBar, Button, Skeleton } from "@mui/material";
+import type { Route } from "./+types/root";
 
-import { Box, Container, Stack, ThemeProvider, createTheme } from "@mui/system";
+import { Box, Container, Stack, ThemeProvider } from "@mui/system";
 
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
 import "./app.css";
+
+
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -66,14 +68,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </Box>
         <Box component="footer">
           <Container>
-            <NavLink to="/">
-              {({ isActive }) => (
-                !isActive ? <Button>Go Back</Button> : <></>
-              )}
-            </NavLink>
-            <NavLink to="/">
-              <Button variant="contained">Next Step</Button>
-            </NavLink>
+            <Button>Go Back</Button>
+            <Button>Next Step</Button>
           </Container>
         </Box>
         <ScrollRestoration />
