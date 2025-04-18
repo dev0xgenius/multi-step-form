@@ -1,9 +1,10 @@
 import type { Route } from "./+types/UserInfo";
 
-import { Form } from "react-router";
-import { Card, CardHeader, CardContent } from "@mui/material";
-import { Stack, Skeleton } from "@mui/material";
+import { Card, CardContent, CardHeader, Skeleton, Stack } from "@mui/material";
 import TextField, { type BaseTextFieldProps } from "@mui/material/TextField";
+import { Form } from "react-router";
+
+import TabButton from "~/src/components/TabButton";
 
 export function HydrateFallback() {
   return (
@@ -36,6 +37,12 @@ export default function UserInfo({ }: Route.ComponentProps) {
       />
       <CardContent>
         <Form>
+          <TabButton
+            tabNo={1}
+            caption="Step 1"
+            desc="your info"
+            path="/summary"
+          />
           <Stack spacing="1rem" direction='column' useFlexGap={true}>
             {fields.map(
               (fieldProps: BaseTextFieldProps, index) =>

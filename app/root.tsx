@@ -14,14 +14,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import type { Route } from "./+types/root";
 
 import { Box, Container, Stack, ThemeProvider } from "@mui/system";
+import theme from "~/src/theme";
 
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
 import "./app.css";
-
-
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -81,7 +80,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <Outlet />
     </ThemeProvider>
   )
