@@ -12,8 +12,8 @@ export default function Summary({ }: Route.ComponentProps) {
         subheader="Double check everything looks OK before confirming"
       />
       <CardContent>
-        <Container>
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Container sx={{ bgcolor: "whitesmoke", paddingY: 2, borderRadius: 4, mb: 2 }}>
+          <Stack direction="row" sx={{ justifyContent: "space-between" }}>
             <Box>
               <Typography variant="h5">Arcade</Typography>
               <Typography variant="caption">
@@ -21,20 +21,21 @@ export default function Summary({ }: Route.ComponentProps) {
               </Typography>
             </Box>
             <Typography variant="h6" component="span"
-              sx={{ m: "auto", me: "0rem" }} >
-              $9 / mo
+              sx={{ m: "auto", marginRight: "0rem" }}
+            >
+              $9/mo
             </Typography>
-          </Box>
+          </Stack>
           <Divider />
-          <Stack component="ul" sx={css`
-            padding: 0;
+          <Stack component="ul" sx={{
+            p: 0, listStyleType: "none",
 
-            li {
-              display: flex;
-              justify-content: space-between;
+            '& li': {
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
             }
-          `}
-          >
+          }}>
             <Box component="li">
               <Typography>Online Service</Typography>
               <Typography>+$1/mo</Typography>

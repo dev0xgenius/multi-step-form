@@ -19,14 +19,16 @@ export default function BillingCard({ src, price, billingPeriod, title }: Billin
     }}>
       <CardContent>
         <Stack direction="row" sx={{ alignItems: "center" }}>
-          <CardMedia sx={{ width: 50, mt: 1.1 }}>
+          <CardMedia sx={{ width: 40, mt: 1 }}>
             <img src={src} width="100%" height="auto" />
           </CardMedia>
           <Stack spacing={0}>
-            <Typography variant="caption" sx={{ fontSize: "1.236rem", fontWeight: "500" }}>
+            <Typography sx={{ fontWeight: "500" }}>
               {title}
             </Typography>
-            <Typography color="textSecondary">{`$${price}/${billingPeriod}`}</Typography>
+            <Typography variant="body2" color="textSecondary">
+              {`$${price}/${billingPeriod}`}
+            </Typography>
           </Stack>
         </Stack>
       </CardContent>

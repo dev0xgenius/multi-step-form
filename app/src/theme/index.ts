@@ -44,14 +44,13 @@ let customTheme = createTheme({
 });
 
 customTheme = createTheme(customTheme, {
-
   components: {
     MuiStack: {
       defaultProps: {
         useFlexGap: true,
         spacing: 2
       }
-    }
+    },
   }
 });
 

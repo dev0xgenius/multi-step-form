@@ -1,4 +1,4 @@
-import { Box, Card, Checkbox, FormControl, Stack, Typography } from "@mui/material";
+import { Box, Checkbox, FormControl, Stack, Typography } from "@mui/material";
 
 export interface AddOnProps {
   caption: string;
@@ -26,9 +26,7 @@ export default function AddOn(props: AddOnProps) {
             {props.description}
           </Typography>
         </Box>
-        <Box sx={{
-          m: "auto", marginRight: 2, color: "grey"
-        }}>
+        <Box sx={{ m: "auto", marginRight: 2, color: "grey" }}>
           {`$${price}/${billingPeriod}`}
         </Box>
       </Stack>
