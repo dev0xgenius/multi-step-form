@@ -21,8 +21,8 @@ export default function Summary({ }: Route.ComponentProps) {
               </Typography>
             </Box>
             <Typography variant="h6" component="span"
-              sx={css`margin: auto; margin-right: 0;`}>
-              $9/mo
+              sx={{ m: "auto", me: "0rem" }} >
+              $9 / mo
             </Typography>
           </Box>
           <Divider />

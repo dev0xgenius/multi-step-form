@@ -1,7 +1,6 @@
 import { Button, Stack, Typography, useTheme } from "@mui/material";
-import { NavLink } from "react-router";
 import { css } from "@mui/material/styles";
-import { useEffect } from "react";
+import { NavLink } from "react-router";
 
 export interface TabButtonProps {
   tabNo: number;
@@ -16,10 +15,7 @@ export default function TabButton({ caption, desc = "", tabNo, path = "/" }: Tab
   return (
     <NavLink to={path} style={{ textDecoration: "none" }}>
       <Stack spacing={theme.spacing(1)} direction="row"
-        sx={{
-          width: "max-content",
-          alignItems: "center",
-        }}>
+        sx={{ width: "max-content", alignItems: "center" }}>
         <Button variant="outlined" sx={{
           p: "0rem",
           minWidth: "2.8rem",

@@ -38,7 +38,7 @@ export function AddOn(props: AddOnProps) {
   );
 }
 
-export function loader({ params }: Route.LoaderArgs) {
+export function clientLoader({ params }: Route.ClientLoaderArgs) {
   let data = new Promise((resolve: (value: AddOnProps[]) => void) => {
     setTimeout(() =>
       resolve([
@@ -65,6 +65,7 @@ export function loader({ params }: Route.LoaderArgs) {
 
 export default function AddOns({ loaderData }: Route.ComponentProps) {
   let { data } = loaderData;
+
   return (
     <Card>
       <CardHeader

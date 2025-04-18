@@ -45,9 +45,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <CssBaseline />
         <AppBar position="static" component="header">
-          <Stack component="nav" useFlexGap={true} spacing="1rem" direction="row">
+          <Stack component="nav" spacing="1rem" direction="row">
             <NavLink to="/">
               <Button variant="contained" color="secondary">1</Button>
             </NavLink>
@@ -81,6 +80,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Outlet />
     </ThemeProvider>
   )

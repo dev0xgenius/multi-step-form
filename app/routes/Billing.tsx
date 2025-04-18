@@ -14,32 +14,7 @@ import advancedSvg from "../src/assets/images/icon-advanced.svg";
 import arcadeSvg from "../src/assets/images/icon-arcade.svg";
 import proSvg from "../src/assets/images/icon-pro.svg";
 
-export interface BillingCardProps {
-  src: string;
-  price: number;
-  title: string;
-  billingPeriod?: "mo" | "yr";
-};
-
-
-export function BillingCard({ src, price, billingPeriod, title }: BillingCardProps) {
-  return (
-    <Card>
-      <CardContent style={{
-        display: "flex", flexDirection: "row", gap: "1rem",
-        alignItems: "center"
-      }}>
-        <CardMedia component="div">
-          <img src={src} />
-        </CardMedia>
-        <Stack spacing={0}>
-          <Typography variant="body2" style={{ fontWeight: "bold" }}>{title}</Typography>
-          <Typography>{`$${price}/${billingPeriod}`}</Typography>
-        </Stack>
-      </CardContent>
-    </Card>
-  );
-};
+import BillingCard from "~/src/components/BillingCard";
 
 export default function Billing({ }: Route.ComponentProps) {
   return (
