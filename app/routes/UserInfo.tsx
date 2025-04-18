@@ -1,6 +1,6 @@
 import type { Route } from "./+types/UserInfo";
 
-import { Card, CardContent, CardHeader, Stack } from "@mui/material";
+import { Card, CardContent, CardHeader, Stack, Typography } from "@mui/material";
 import TextField, { type BaseTextFieldProps } from "@mui/material/TextField";
 
 export default function UserInfo({ }: Route.ComponentProps) {
@@ -19,7 +19,7 @@ export default function UserInfo({ }: Route.ComponentProps) {
   return (
     <Card>
       <CardHeader
-        title="Personal Info"
+        title={<Typography variant="h4" fontWeight="500" color="primary">Personal Info</Typography>}
         subheader="Please fill in your name, email address and phone number"
       />
       <CardContent>
