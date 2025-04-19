@@ -3,7 +3,7 @@ import { Box, Checkbox, FormControl, Stack, Typography } from "@mui/material";
 export interface AddOnProps {
   caption: string;
   description: string;
-  priceInfo: [number, string];
+  priceInfo: (string | number)[];
 };
 
 export default function AddOn(props: AddOnProps) {
@@ -11,14 +11,13 @@ export default function AddOn(props: AddOnProps) {
 
   return (
     <FormControl sx={{
-      paddingY: 2, borderRadius: 2, border: 1, borderColor: "grey",
+      paddingY: 2, borderRadius: 4, border: 1, borderColor: "lightgrey",
       '&:hover': {
         border: 2,
         bgcolor: "whitesmoke",
-        borderColor: "secondary.main",
       }
     }}>
-      <Stack direction="row" spacing={1}>
+      <Stack direction="row" spacing={0}>
         <Checkbox name="add-on" />
         <Box>
           <Typography fontWeight="500">{props.caption}</Typography>
@@ -26,10 +25,10 @@ export default function AddOn(props: AddOnProps) {
             {props.description}
           </Typography>
         </Box>
-        <Box sx={{ m: "auto", marginRight: 2, color: "grey" }}>
+        <Box sx={{ m: "auto", marginRight: 2, color: "grey", typography: "body2" }}>
           {`$${price}/${billingPeriod}`}
         </Box>
       </Stack>
-    </FormControl>
+    </FormControl >
   );
 } 

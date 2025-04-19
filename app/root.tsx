@@ -3,36 +3,24 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  NavLink,
   Outlet,
   Scripts,
-  ScrollRestoration,
+  ScrollRestoration
 } from "react-router";
 
-import { AppBar, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import type { Route } from "./+types/root";
 
-import { Box, Container, Stack, ThemeProvider } from "@mui/system";
+import { Box, Container, ThemeProvider } from "@mui/system";
 import theme from "~/src/theme";
 
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
+import Header from "./src/components/Header";
 
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -44,44 +32,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <AppBar position="static" component="header">
-          <Stack component="nav" spacing="1rem" direction="row">
-            <NavLink to="/">
-              <Button variant="contained" color="secondary">1</Button>
-            </NavLink>
-            <NavLink to="/billing">
-              <Button variant="contained" color="secondary">2</Button>
-            </NavLink>
-            <NavLink to="/add-ons">
-              <Button variant="contained" color="secondary">3</Button>
-            </NavLink>
-            <NavLink to="/summary">
-              <Button variant="contained" color="secondary">4</Button>
-            </NavLink>
-          </Stack>
-        </AppBar>
-        <Box component="main">
-          {children}
-        </Box>
-        <Box component="footer">
-          <Container>
-            <Button>Go Back</Button>
-            <Button>Next Step</Button>
-          </Container>
-        </Box>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Header />
+          <Box component="main" p={2}>
+            {children}
+          </Box>
+          <Box component="footer">
+            <Container>
+              <Button>Go Back</Button>
+              <Button>Next Step</Button>
+            </Container>
+          </Box>
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
-    </html>
+    </html >
   );
 }
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Outlet />
-    </ThemeProvider>
+    <Outlet />
   )
 }
 

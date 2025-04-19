@@ -10,11 +10,12 @@ export interface BillingCardProps {
 export default function BillingCard({ src, price, billingPeriod, title }: BillingCardProps) {
   return (
     <Card variant="outlined" sx={{
+      borderRadius: 4,
+
       '&:hover, &.selected': {
         border: 2,
         borderColor: "primary.main",
-        borderRadius: 4,
-        bgcolor: "whitesmoke"
+        bgcolor: "whitesmoke",
       }
     }}>
       <CardContent>

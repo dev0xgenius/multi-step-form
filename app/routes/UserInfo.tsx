@@ -1,7 +1,8 @@
 import type { Route } from "./+types/UserInfo";
 
-import { Card, CardContent, CardHeader, Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import TextField, { type BaseTextFieldProps } from "@mui/material/TextField";
+import FormStep from "~/src/components/FormStep";
 
 export default function UserInfo({ }: Route.ComponentProps) {
   const fields: BaseTextFieldProps[] = [
@@ -17,19 +18,16 @@ export default function UserInfo({ }: Route.ComponentProps) {
   ];
 
   return (
-    <Card>
-      <CardHeader
-        title={<Typography variant="h4" fontWeight="500" color="primary">Personal Info</Typography>}
-        subheader="Please fill in your name, email address and phone number"
-      />
-      <CardContent>
-        <Stack direction='column'>
-          {fields.map(
-            (fieldProps: BaseTextFieldProps, index) =>
-              <TextField key={index} {...fieldProps} />
-          )}
-        </Stack>
-      </CardContent>
-    </Card>
+    <FormStep
+      title="Personal Info"
+      description="Please fill in your name, email address and phone number"
+    >
+      <Stack direction='column'>
+        {fields.map(
+          (fieldProps: BaseTextFieldProps, index) =>
+            <TextField key={index} {...fieldProps} />
+        )}
+      </Stack>
+    </FormStep>
   )
 }

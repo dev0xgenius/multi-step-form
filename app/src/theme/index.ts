@@ -34,6 +34,7 @@ let customTheme = createTheme({
       strawberryRed: { main: "hsl(354, 84%, 57%)" }
     }
   },
+
   typography: {
     button: {
       textDecoration: "none",
@@ -48,7 +49,7 @@ customTheme = createTheme(customTheme, {
     MuiStack: {
       defaultProps: {
         useFlexGap: true,
-        spacing: 2
+        spacing: 1
       }
     },
   }
