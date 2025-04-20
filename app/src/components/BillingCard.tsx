@@ -19,7 +19,7 @@ export default function BillingCard({ src, price, billingPeriod, title }: Billin
       }
     }}>
       <CardContent>
-        <Stack direction="row" sx={{ alignItems: "center" }}>
+        <Stack direction="row" component="div" sx={{ alignItems: "center" }}>
           <CardMedia sx={{ width: 40, mt: 1 }}>
             <img src={src} width="100%" height="auto" />
           </CardMedia>
@@ -33,7 +33,7 @@ export default function BillingCard({ src, price, billingPeriod, title }: Billin
           </Stack>
         </Stack>
       </CardContent>
-    </Card >
+    </Card>
   );
 };
 

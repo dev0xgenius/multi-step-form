@@ -12,7 +12,7 @@ import { Button } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import type { Route } from "./+types/root";
 
-import { Box, Container, ThemeProvider } from "@mui/system";
+import { Box, Container, Stack, ThemeProvider } from "@mui/system";
 import theme from "~/src/theme";
 
 import '@fontsource/ubuntu/300.css';
@@ -20,6 +20,7 @@ import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
 import Header from "./src/components/Header";
+import Footer from "./src/components/Footer";
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -33,17 +34,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Header />
-          <Box component="main" p={2}>
-            {children}
-          </Box>
-          <Box component="footer">
-            <Container>
-              <Button>Go Back</Button>
-              <Button>Next Step</Button>
-            </Container>
-          </Box>
+          <Stack minHeight="100dvh" border={1} bgcolor="whitesmoke">
+            <CssBaseline />
+            <Header />
+            <Box component="main" p={2}>
+              {children}
+            </Box>
+            <Footer />
+          </Stack>
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />

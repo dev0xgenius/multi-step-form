@@ -6,14 +6,12 @@ import FormStep from "~/src/components/FormStep";
 
 export default function UserInfo({ }: Route.ComponentProps) {
   const fields: BaseTextFieldProps[] = [
-    { name: "name", placeholder: "e.g Stephen King", label: "Name", required: true },
+    { name: "name", placeholder: "e.g Stephen King", required: true },
     {
-      name: "email", placeholder: "e.g stephenking@lorem.com",
-      label: "Email Address", required: true, type: "email"
+      name: "email", placeholder: "e.g stephenking@lorem.com", required: true, type: "email"
     },
     {
-      name: "phone", placeholder: "e.g +234 9075733857", label: "Phone Number",
-      type: "tel"
+      name: "phone", placeholder: "e.g +234 9075733857", type: "tel"
     },
   ];
 

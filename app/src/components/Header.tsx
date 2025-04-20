@@ -1,6 +1,8 @@
 import { AppBar, Stack } from "@mui/material";
 import TabButton from "./TabButton";
 
+import bgImage from "../assets/images/bg-sidebar-mobile.svg";
+
 export interface TabButtonsProps {
   tabs: string[];
 };
@@ -21,9 +23,16 @@ export default function Header() {
   return (
     <AppBar position="static" component="header" sx={
       (theme) =>
-        ({ p: 4, pb: 16, bgcolor: theme.palette.secondary.main })
+      ({
+        p: 4, pb: 16,
+        bgcolor: theme.palette.secondary.main,
+        boxShadow: 0,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundImage: `url("${bgImage}")`
+      })
     }>
-      <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
+      <Stack direction="row" spacing="1rem" sx={{ justifyContent: "center" }}>
         <TabButtons tabs={["/", "/billing", "/add-ons", "/summary"]} />
       </Stack>
     </AppBar>

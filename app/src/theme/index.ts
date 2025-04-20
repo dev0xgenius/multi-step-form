@@ -37,6 +37,7 @@ let customTheme = createTheme({
 
   typography: {
     button: {
+      textTransform: "none",
       textDecoration: "none",
     },
 
@@ -52,6 +53,11 @@ customTheme = createTheme(customTheme, {
         spacing: 1
       }
     },
+    MuiTextField: {
+      defaultProps: {
+
+      }
+    }
   }
 });
 
