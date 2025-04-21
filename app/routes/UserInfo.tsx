@@ -26,7 +26,7 @@ export default function UserInfo({ }: Route.ComponentProps) {
         {fields.map(
           (fieldProps: OutlinedInputProps, index) => (
             <FormControl>
-              <FormLabel>{fieldProps?.label}</FormLabel>
+              <FormLabel sx={{ typography: "body2" }}>{fieldProps?.label}</FormLabel>
               <OutlinedInput key={index} {...fieldProps} label={undefined} />
             </FormControl>
           )
