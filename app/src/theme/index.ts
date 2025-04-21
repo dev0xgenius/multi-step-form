@@ -35,6 +35,10 @@ let customTheme = createTheme({
     }
   },
 
+  shape: {
+    borderRadius: "0.786rem"
+  },
+
   typography: {
     button: {
       textTransform: "none",
@@ -53,11 +57,6 @@ customTheme = createTheme(customTheme, {
         spacing: 1
       }
     },
-    MuiTextField: {
-      defaultProps: {
-
-      }
-    }
   }
 });
 

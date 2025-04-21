@@ -8,10 +8,10 @@ export interface FormStepProps {
 
 export default function FormStep({ title, description, children }: FormStepProps) {
   return (
-    <Card sx={{ mt: -14, boxShadow: 24, p: 0.5, borderRadius: 4 }}>
+    <Card sx={{ mt: -14, boxShadow: 24, p: 0.5 }}>
       <CardHeader
         title={
-          <Typography variant="h5" fontWeight="bolder" color="primary">
+          <Typography variant="h5" fontWeight="bolder" color="primary" paddingY={0.1}>
             {title}
           </Typography>
         }

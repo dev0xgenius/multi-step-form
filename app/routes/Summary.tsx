@@ -9,7 +9,7 @@ export default function Summary({ }: Route.ComponentProps) {
       description="Double check everything looks OK before confirming"
       title="Finishing Up"
     >
-      <Container sx={{ bgcolor: "whitesmoke", paddingY: 2, borderRadius: 4, mb: 2 }}>
+      <Container sx={{ bgcolor: "whitesmoke", paddingY: 2, borderRadius: 1, mb: 2 }}>
         <Stack direction="row" sx={{ justifyContent: "space-between" }}>
           <Box>
             <Typography variant="h5">Arcade</Typography>

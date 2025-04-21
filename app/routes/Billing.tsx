@@ -16,7 +16,7 @@ export default function Billing({ }: Route.ComponentProps) {
       title="Select your plan"
       description="You have the option of monthly and yearly billing"
     >
-      <Stack useFlexGap={true} spacing="1rem">
+      <Stack useFlexGap={true} spacing={1}>
         {[["Arcade", 2], ["Pro", 1], ["Advanced", 1]].map(([tag, price], index) => (
           <BillingCard
             title={typeof tag == "string" && tag || ""}
@@ -31,6 +31,6 @@ export default function Billing({ }: Route.ComponentProps) {
           />
         ))}
       </Stack>
-    </FormStep>
+    </FormStep >
   );
 };

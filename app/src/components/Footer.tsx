@@ -10,7 +10,7 @@ export default function Footer() {
       }}>
       <Stack direction="row" sx={{ p: 2, justifyContent: "space-between" }}>
         <Button>Go Back</Button>
-        <Button variant="contained">Next Step</Button>
+        <Button variant="contained" sx={{ borderRadius: 1 / 4 }}>Next Step</Button>
       </Stack >
     </Box >
   );

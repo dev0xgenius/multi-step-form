@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Container, Stack, Typography } from "@mui/material";
+import { Badge, Card, CardContent, CardMedia, Container, Stack, Typography } from "@mui/material";
 
 export interface BillingCardProps {
   src: string;
@@ -10,8 +10,6 @@ export interface BillingCardProps {
 export default function BillingCard({ src, price, billingPeriod, title }: BillingCardProps) {
   return (
     <Card variant="outlined" sx={{
-      borderRadius: 4,
-
       '&:hover, &.selected': {
         border: 2,
         borderColor: "primary.main",
@@ -19,8 +17,8 @@ export default function BillingCard({ src, price, billingPeriod, title }: Billin
       }
     }}>
       <CardContent>
-        <Stack direction="row" component="div" sx={{ alignItems: "center" }}>
-          <CardMedia sx={{ width: 40, mt: 1 }}>
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <CardMedia sx={{ width: 40, display: "flex", alignItems: "center" }}>
             <img src={src} width="100%" height="auto" />
           </CardMedia>
           <Stack spacing={0}>
@@ -33,7 +31,7 @@ export default function BillingCard({ src, price, billingPeriod, title }: Billin
           </Stack>
         </Stack>
       </CardContent>
-    </Card>
+    </Card >
   );
 };
 
