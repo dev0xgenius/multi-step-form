@@ -1,17 +1,19 @@
 import type { Route } from "./+types/UserInfo";
 
-import { Stack } from "@mui/material";
-import TextField, { type BaseTextFieldProps } from "@mui/material/TextField";
+import { FormControl, FormLabel, Stack } from "@mui/material";
+import OutlinedInput, { type OutlinedInputProps } from "@mui/material/OutlinedInput";
 import FormStep from "~/src/components/FormStep";
 
 export default function UserInfo({ }: Route.ComponentProps) {
-  const fields: BaseTextFieldProps[] = [
-    { name: "name", placeholder: "e.g Stephen King", required: true },
+  const fields: OutlinedInputProps[] = [
+    { name: "name", placeholder: "e.g Stephen King", required: true, label: "Name" },
     {
-      name: "email", placeholder: "e.g stephenking@lorem.com", required: true, type: "email"
+      name: "email", placeholder: "e.g stephenking@lorem.com",
+      required: true, type: "email", label: "Email Address"
     },
     {
-      name: "phone", placeholder: "e.g +234 9075733857", type: "tel"
+      name: "phone", placeholder: "e.g +234 9075733857", type: "tel",
+      label: "Phone Number"
     },
   ];
 
@@ -22,8 +24,12 @@ export default function UserInfo({ }: Route.ComponentProps) {
     >
       <Stack direction='column'>
         {fields.map(
-          (fieldProps: BaseTextFieldProps, index) =>
-            <TextField key={index} {...fieldProps} />
+          (fieldProps: OutlinedInputProps, index) => (
+            <FormControl>
+              <FormLabel>{fieldProps?.label}</FormLabel>
+              <OutlinedInput key={index} {...fieldProps} label={undefined} />
+            </FormControl>
+          )
         )}
       </Stack>
     </FormStep>
