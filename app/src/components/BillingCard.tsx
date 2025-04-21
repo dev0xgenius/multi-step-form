@@ -9,7 +9,7 @@ export interface BillingCardProps {
 
 export default function BillingCard({ src, price, billingPeriod, title }: BillingCardProps) {
   return (
-    <Card variant="outlined" sx={{
+    <Card component={Container} disableGutters={true} variant="outlined" sx={{
       '&:hover, &.selected': {
         border: 2,
         borderColor: "primary.main",

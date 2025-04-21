@@ -11,7 +11,7 @@ export default function AddOn(props: AddOnProps) {
 
   return (
     <FormControl sx={{
-      paddingY: 2, borderRadius: 1, border: 1, borderColor: "whitesmoke",
+      paddingY: 2, borderRadius: 1, border: 1, borderColor: "lightgrey",
       '&:hover': {
         border: 2,
         bgcolor: "whitesmoke",

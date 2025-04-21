@@ -28,10 +28,10 @@ export default function UserInfo({ }: Route.ComponentProps) {
             <FormControl>
               <FormLabel sx={{ typography: "body2" }}>{fieldProps?.label}</FormLabel>
               <OutlinedInput
-                key={index} {...fieldProps}
+                {...fieldProps}
+                key={index}
                 label={undefined}
-                size="small"
-                sx={{ borderRadius: 1 / 4 }}
+                sx={{ borderRadius: 1 / 3 }}
               />
             </FormControl>
           )
