@@ -19,7 +19,7 @@ export function TabButtons({ tabs }: TabButtonsProps) {
   return tabButtons;
 };
 
-export default function Header() {
+export default function Header({ tabs }: { tabs: string[] }) {
   return (
     <AppBar position="static" component="header" sx={
       (theme) =>
@@ -33,7 +33,7 @@ export default function Header() {
       })
     }>
       <Stack direction="row" spacing={3} sx={{ justifyContent: "center" }}>
-        <TabButtons tabs={["/", "/billing", "/add-ons", "/summary"]} />
+        <TabButtons tabs={tabs} />
       </Stack>
     </AppBar>
   );

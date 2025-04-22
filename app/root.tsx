@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer, useState } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -8,22 +8,23 @@ import {
   ScrollRestoration
 } from "react-router";
 
-import { Button } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import type { Route } from "./+types/root";
 
-import { Box, Container, Stack, ThemeProvider } from "@mui/system";
+import { Box, Stack, ThemeProvider } from "@mui/system";
 import theme from "~/src/theme";
 
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
-import Header from "./src/components/Header";
 import Footer from "./src/components/Footer";
+import Header from "./src/components/Header";
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const [tabs, _] = useState(["/", "/billing", "/add-ons", "/summary"]);
+
   return (
     <html lang="en">
       <head>
@@ -36,11 +37,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider theme={theme}>
           <Stack minHeight="100dvh" border={1} bgcolor="whitesmoke">
             <CssBaseline />
-            <Header />
+            <Header tabs={tabs} />
             <Box component="main" p={2}>
               {children}
             </Box>
-            <Footer />
+            <Footer tabs={tabs} />
           </Stack>
         </ThemeProvider>
         <ScrollRestoration />
@@ -51,8 +52,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const [formState, dispatch] = useReducer(() => undefined, {
+    contact: {
+      name: "",
+      email: "",
+      phone: null,
+    },
+    currentPlan: {
+      category: "",
+      price: null,
+      billingPeriod: "month",
+    },
+    extras: []
+  });
+
   return (
-    <Outlet />
+    <>
+      <Outlet />
+    </>
   )
 }
 

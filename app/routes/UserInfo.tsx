@@ -30,6 +30,7 @@ export default function UserInfo({ }: Route.ComponentProps) {
               <OutlinedInput
                 {...fieldProps}
                 key={index}
+                size="small"
                 label={undefined}
                 sx={{ borderRadius: 1 / 3 }}
               />
