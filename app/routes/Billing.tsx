@@ -11,11 +11,11 @@ import proSvg from "../src/assets/images/icon-pro.svg";
 
 import { Container } from "@mui/system";
 import BillingCard from "~/src/components/BillingCard";
-import FormStep from "~/src/components/FormStep";
+import CustomCard from "~/src/components/CustomCard";
 
 export default function Billing({ }: Route.ComponentProps) {
   return (
-    <FormStep
+    <CustomCard
       title="Select your plan"
       description="You have the option of monthly and yearly billing"
     >
@@ -47,6 +47,6 @@ export default function Billing({ }: Route.ComponentProps) {
           <Typography>Yearly</Typography>
         </Stack>
       </Container>
-    </FormStep>
+    </CustomCard>
   );
 };

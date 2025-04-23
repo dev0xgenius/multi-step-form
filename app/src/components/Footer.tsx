@@ -16,7 +16,8 @@ export default function Footer({ tabs }: { tabs: string[]; }) {
       sx={{ m: "auto", mb: 0, width: "100%" }}
     >
       <Stack direction="row" sx={{ p: 2, justifyContent: "space-between" }}>
-        <Button onClick={goBack}
+        <Button
+          onClick={goBack}
           sx={{ visibility: !currentLocation ? "hidden" : "visible" }}
         >
           Go Back
@@ -24,7 +25,7 @@ export default function Footer({ tabs }: { tabs: string[]; }) {
         <Button variant="contained" sx={{ borderRadius: 1 / 4 }} onClick={performAction}>
           {currentLocation == (tabs.length - 1) ? "Confirm" : "Next Step"}
         </Button>
-      </Stack >
-    </Box >
+      </Stack>
+    </Box>
   );
 };

@@ -1,11 +1,11 @@
 import { Box, Container, Divider, Stack, Typography } from "@mui/material";
 import { Link } from "react-router";
 import type { Route } from "./+types/Summary";
-import FormStep from "~/src/components/FormStep";
+import CustomCard from "~/src/components/CustomCard";
 
 export default function Summary({ }: Route.ComponentProps) {
   return (
-    <FormStep
+    <CustomCard
       description="Double check everything looks OK before confirming"
       title="Finishing Up"
     >
@@ -47,6 +47,6 @@ export default function Summary({ }: Route.ComponentProps) {
         <Typography>Total (per year)</Typography>
         <Typography>$12/yr</Typography>
       </Stack>
-    </FormStep>
+    </CustomCard>
   );
 };

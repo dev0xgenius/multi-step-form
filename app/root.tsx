@@ -1,11 +1,13 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import {
   isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
+  ScrollRestoration,
+  useFetcher,
+  useNavigation
 } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,10 +22,14 @@ import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
 import Footer from "./src/components/Footer";
 import Header from "./src/components/Header";
+import { CircularProgress } from "@mui/material";
 
+export function HydrateFallback() {
+  return <CircularProgress />
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const [tabs, _] = useState(["/", "/billing", "/add-ons", "/summary"]);
+  const tabs = useRef(["/", "/billing", "/add-ons", "/summary"]);
 
   return (
     <html lang="en">
@@ -37,21 +43,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider theme={theme}>
           <Stack minHeight="100dvh" border={1} bgcolor="whitesmoke">
             <CssBaseline />
-            <Header tabs={tabs} />
+            <Header tabs={tabs.current} />
             <Box component="main" p={2}>
               {children}
             </Box>
-            <Footer tabs={tabs} />
+            <Footer tabs={tabs.current} />
           </Stack>
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
-    </html >
+    </html>
   );
 }
 
 export default function App() {
+  const formHandler = useFetcher();
   const [formState, dispatch] = useReducer(() => undefined, {
     contact: {
       name: "",

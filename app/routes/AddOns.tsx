@@ -10,6 +10,7 @@ import { Await } from "react-router";
 import AddOn from "~/src/components/AddOn";
 import type { Route } from "./+types/AddOns";
 import FormStep from "~/src/components/FormStep";
+import CustomCard from "~/src/components/CustomCard";
 
 export function clientLoader({ params }: Route.ClientLoaderArgs) {
   let data = [
@@ -37,29 +38,20 @@ export default function AddOns({ loaderData }: Route.ComponentProps) {
   let { data } = loaderData;
 
   return (
-    <FormStep
+    <CustomCard
       title="Pick add-ons"
       description="Add-ons help enhance your gaming experience">
-      <Suspense fallback={<CircularProgress />}>
-        <Await resolve={data}>
-          {
-            (value) => {
-
-              return (
-                <Stack>
-                  {value.map((data, index) => (
-                    <AddOn
-                      caption={data.caption}
-                      description={data.description}
-                      priceInfo={data.priceInfo}
-                      key={index}
-                    />))}
-                </Stack>
-              )
-            }
-          }
-        </Await>
-      </Suspense>
-    </FormStep>
+      {
+        <Stack>
+          {data.map((addOn, index) => (
+            <AddOn
+              caption={addOn.caption}
+              description={addOn.description}
+              priceInfo={addOn.priceInfo}
+              key={index}
+            />))}
+        </Stack>
+      }
+    </CustomCard>
   );
 };

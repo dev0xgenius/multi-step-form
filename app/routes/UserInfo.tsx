@@ -2,7 +2,14 @@ import type { Route } from "./+types/UserInfo";
 
 import { FormControl, FormLabel, Stack } from "@mui/material";
 import OutlinedInput, { type OutlinedInputProps } from "@mui/material/OutlinedInput";
-import FormStep from "~/src/components/FormStep";
+import CustomCard from "~/src/components/CustomCard";
+
+export async function clientAction({ request }: Route.ClientActionArgs) {
+  const data = await request.formData();
+  let name = data.get("name");
+
+  return { ok: true, name, age: data.get("age") };
+};
 
 export default function UserInfo({ }: Route.ComponentProps) {
   const fields: OutlinedInputProps[] = [
@@ -18,7 +25,7 @@ export default function UserInfo({ }: Route.ComponentProps) {
   ];
 
   return (
-    <FormStep
+    <CustomCard
       title="Personal Info"
       description="Please fill in your name, email address and phone number"
     >
@@ -38,6 +45,6 @@ export default function UserInfo({ }: Route.ComponentProps) {
           )
         )}
       </Stack>
-    </FormStep>
+    </CustomCard>
   )
 }
