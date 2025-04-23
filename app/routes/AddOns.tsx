@@ -1,16 +1,9 @@
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CircularProgress,
   Stack
 } from "@mui/material";
-import { Suspense } from "react";
-import { Await } from "react-router";
 import AddOn from "~/src/components/AddOn";
-import type { Route } from "./+types/AddOns";
-import FormStep from "~/src/components/FormStep";
 import CustomCard from "~/src/components/CustomCard";
+import type { Route } from "./+types/AddOns";
 
 export function clientLoader({ params }: Route.ClientLoaderArgs) {
   let data = [

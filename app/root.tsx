@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, { useCallback, useReducer } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -7,7 +7,8 @@ import {
   Scripts,
   ScrollRestoration,
   useFetcher,
-  useNavigation
+  useLocation,
+  useNavigate
 } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,16 +21,32 @@ import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
-import Footer from "./src/components/Footer";
+import { Button, CircularProgress } from "@mui/material";
+import { useForm } from "react-hook-form";
+import routes from "./routes";
 import Header from "./src/components/Header";
-import { CircularProgress } from "@mui/material";
 
 export function HydrateFallback() {
   return <CircularProgress />
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const tabs = useRef(["/", "/billing", "/add-ons", "/summary"]);
+  const fetcher = useFetcher();
+  const form = useForm();
+  const tabs = Array.from(new Set(routes.map(route =>
+    (route.path !== undefined) ? route.path : "/")));
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const getCurrentTabIndex = () => tabs.indexOf(location.pathname);
+  const goBack = useCallback(() => { navigate(-1) }, []);
+
+  const nextStep = useCallback(() => {
+    location.pathname == tabs[tabs.length - 1]
+      ? alert("Submitting...")
+      : navigate(tabs[getCurrentTabIndex() + 1]);
+  }, [location]);
 
   return (
     <html lang="en">
@@ -43,11 +60,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider theme={theme}>
           <Stack minHeight="100dvh" border={1} bgcolor="whitesmoke">
             <CssBaseline />
-            <Header tabs={tabs.current} />
+            <Header tabs={tabs} />
             <Box component="main" p={2}>
               {children}
             </Box>
-            <Footer tabs={tabs.current} />
+            <Stack direction={"row"} sx={{ m: "auto", mb: 0 }}>
+              {
+                location.pathname != "/" &&
+                <Button onClick={goBack}>Go Back</Button>}
+              <Button onClick={nextStep}>Next Step</Button>
+            </Stack>
           </Stack>
         </ThemeProvider>
         <ScrollRestoration />
@@ -58,8 +80,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const formHandler = useFetcher();
-  const [formState, dispatch] = useReducer(() => undefined, {
+  const [formStates, dispatch] = useReducer((prevState, action) => ({ ...prevState }), {
     contact: {
       name: "",
       email: "",

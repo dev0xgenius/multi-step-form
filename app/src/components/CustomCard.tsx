@@ -10,13 +10,13 @@ export default function CustomCard({ title, description, children }: CustomCardP
   return (
     <Card sx={{ mt: -14, boxShadow: 24, p: 0.5 }}>
       <CardHeader title=
-        {<Typography variant="h5" fontWeight="bolder" color="primary" paddingY={0.1}>
+        {<Typography variant="h5" fontWeight="bolder" color="primary" paddingY={0.5}>
           {title}
         </Typography>
         }
         subheader={description}
       />
-      <CardContent>{children}</CardContent>
+      <CardContent sx={{ paddingY: 0.5 }}>{children}</CardContent>
     </Card>
   );
 }
