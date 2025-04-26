@@ -1,9 +1,12 @@
 import {
-  Stack
+  Stack,
+  Typography
 } from "@mui/material";
 import AddOn from "~/src/components/AddOn";
 import CustomCard from "~/src/components/CustomCard";
 import type { Route } from "./+types/AddOns";
+import { isRouteErrorResponse } from "react-router";
+import { Box } from "@mui/system";
 
 export function clientLoader({ params }: Route.ClientLoaderArgs) {
   let data = [
@@ -48,3 +51,4 @@ export default function AddOns({ loaderData }: Route.ComponentProps) {
     </CustomCard>
   );
 };
+

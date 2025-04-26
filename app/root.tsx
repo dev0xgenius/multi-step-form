@@ -6,7 +6,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useFetcher,
   useLocation,
   useNavigate
 } from "react-router";
@@ -17,36 +16,18 @@ import type { Route } from "./+types/root";
 import { Box, Stack, ThemeProvider } from "@mui/system";
 import theme from "~/src/theme";
 
+
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
-import { Button, CircularProgress } from "@mui/material";
-import { useForm } from "react-hook-form";
-import routes from "./routes";
+import { Button } from "@mui/material";
 import Header from "./src/components/Header";
 
-export function HydrateFallback() {
-  return <CircularProgress />
-};
-
 export function Layout({ children }: { children: React.ReactNode }) {
-  const fetcher = useFetcher();
-  const form = useForm();
-  const tabs = Array.from(new Set(routes.map(route =>
-    (route.path !== undefined) ? route.path : "/")));
-
   const location = useLocation();
   const navigate = useNavigate();
-
-  const getCurrentTabIndex = () => tabs.indexOf(location.pathname);
   const goBack = useCallback(() => { navigate(-1) }, []);
-
-  const nextStep = useCallback(() => {
-    location.pathname == tabs[tabs.length - 1]
-      ? alert("Submitting...")
-      : navigate(tabs[getCurrentTabIndex() + 1]);
-  }, [location]);
 
   return (
     <html lang="en">
@@ -60,15 +41,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider theme={theme}>
           <Stack minHeight="100dvh" border={1} bgcolor="whitesmoke">
             <CssBaseline />
-            <Header tabs={tabs} />
+            <Header />
             <Box component="main" p={2}>
               {children}
             </Box>
             <Stack direction={"row"} sx={{ m: "auto", mb: 0 }}>
-              {
-                location.pathname != "/" &&
-                <Button onClick={goBack}>Go Back</Button>}
-              <Button onClick={nextStep}>Next Step</Button>
+              {location.pathname != "/" && <Button onClick={goBack}>Go Back</Button>}
+              <Button type="submit" form="currentForm"
+                onClick={() => alert("Hi from Button")}>
+                {location.pathname != "/summary" ? "Next Step" : "Confirm"}
+              </Button>
             </Stack>
           </Stack>
         </ThemeProvider>
@@ -80,13 +62,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const [formStates, dispatch] = useReducer((prevState, action) => ({ ...prevState }), {
+  const [formStates, dispatch] = useReducer((prevState) => ({ ...prevState }), {
     contact: {
       name: "",
       email: "",
       phone: null,
     },
-    currentPlan: {
+    plan: {
       category: "",
       price: null,
       billingPeriod: "month",

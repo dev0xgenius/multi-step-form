@@ -1,6 +1,5 @@
 import { Button, Stack, Typography, useTheme } from "@mui/material";
-import { css } from "@mui/material/styles";
-import { NavLink, useLocation } from "react-router";
+import { NavLink } from "react-router";
 
 export interface TabButtonProps {
   tabNo: number;
