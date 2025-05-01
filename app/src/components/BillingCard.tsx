@@ -1,4 +1,14 @@
-import { Badge, Card, CardContent, CardMedia, Container, Stack, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  FormControlLabel,
+  Radio,
+  Stack,
+  Typography
+} from "@mui/material";
+
 
 export interface BillingCardProps {
   src: string;
@@ -7,31 +17,49 @@ export interface BillingCardProps {
   billingPeriod?: "mo" | "yr";
 };
 
-export default function BillingCard({ src, price, billingPeriod, title }: BillingCardProps) {
+export default function BillingCard({
+  src, title, price, billingPeriod
+}: BillingCardProps) {
   return (
-    <Card component={Container} disableGutters={true} variant="outlined" sx={{
-      '&:hover, &.selected': {
-        border: 2,
-        borderColor: "primary.main",
-        bgcolor: "whitesmoke",
+    <FormControlLabel sx={{
+      p: 0, m: 0,
+      '& > span': {
+        display: "block",
+        width: "100%"
       }
-    }}>
-      <CardContent>
-        <Stack direction="row" alignItems="center" spacing={2}>
-          <CardMedia sx={{ width: 40, display: "flex", alignItems: "center" }}>
-            <img src={src} width="100%" height="auto" />
-          </CardMedia>
-          <Stack spacing={0}>
-            <Typography sx={{ fontWeight: "500" }}>
-              {title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary">
-              {`$${price}/${billingPeriod}`}
-            </Typography>
+    }} value={title.toLowerCase()} label={
+      <Card component={Container} disableGutters={true} variant="outlined" sx={{
+        '&:hover, &.selected': {
+          border: 2,
+          borderColor: "primary.main",
+          bgcolor: "whitesmoke",
+        }
+      }} >
+        <CardContent sx={{ position: "relative" }}>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <CardMedia sx={{ width: 40, display: "flex", alignItems: "center" }}>
+              <img src={src} width="100%" height="auto" />
+            </CardMedia>
+            <Stack spacing={0}>
+              <Typography fontWeight="500">
+                {title}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                {`$${price}/${billingPeriod}`}
+              </Typography>
+            </Stack>
           </Stack>
-        </Stack>
-      </CardContent>
-    </Card >
+        </CardContent>
+      </ Card>
+    }
+
+      control={
+        <Radio sx={theme => ({
+          ...theme.mixins.coverParentAbsolutely,
+          visibility: "hidden"
+        })}
+        />
+      }
+    />
   );
 };
-

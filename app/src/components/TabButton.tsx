@@ -12,7 +12,7 @@ export default function TabButton({ caption, desc = "", tabNo, path = "/" }: Tab
   const theme = useTheme();
 
   return (
-    <NavLink to={path} style={{ textDecoration: "none" }}>
+    <NavLink to={path} style={{ textDecoration: "none" }} viewTransition={true}>
       <Stack spacing={theme.spacing(1)} direction="row"
         sx={{ width: "max-content", alignItems: "center" }}
       >

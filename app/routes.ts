@@ -4,8 +4,8 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
-  route("/", "routes/UserInfo.tsx"),
-  route("/billing", "routes/Billing.tsx"),
-  route("/add-ons", "routes/AddOns.tsx"),
-  route("/summary", "routes/Summary.tsx")
+  route("/", "routes/contact-info.tsx"),
+  route("/billing", "routes/billing.tsx"),
+  route("/add-ons", "routes/add-ons.tsx"),
+  route("/summary", "routes/summary.tsx")
 ] satisfies RouteConfig;

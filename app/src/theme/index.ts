@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, type CSSProperties } from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
   interface Palette {
@@ -16,9 +16,14 @@ declare module "@mui/material/styles" {
       strawberryRed?: PaletteOptions['primary']
     }
   }
+
+  interface Mixins {
+    coverParentAbsolutely?: CSSProperties;
+  }
 }
 
 let customTheme = createTheme({
+  cssVariables: true,
   palette: {
     primary: {
       main: "hsl(213, 96%, 18%)",
@@ -57,6 +62,14 @@ customTheme = createTheme(customTheme, {
         spacing: 1
       }
     },
+  },
+
+  mixins: {
+    coverParentAbsolutely: {
+      position: "absolute",
+      top: 0, left: 0,
+      bottom: 0, right: 0
+    }
   }
 });
 

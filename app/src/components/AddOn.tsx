@@ -1,24 +1,26 @@
-import { Box, Checkbox, FormControl, Stack, Typography } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Stack, Typography } from "@mui/material";
+import { useState, type ChangeEventHandler } from "react";
 
 export interface AddOnProps {
   caption: string;
   description: string;
   priceInfo: (string | number)[];
-};
+  handleChange: ChangeEventHandler;
+}
 
 export default function AddOn(props: AddOnProps) {
+  const inputValue = props.caption.split(" ").join("-");
   const [price, billingPeriod] = props.priceInfo;
 
   return (
-    <FormControl sx={{
+    <FormControlLabel sx={{
       paddingY: 2, borderRadius: 1, border: 1, borderColor: "lightgrey",
       '&:hover': {
         border: 2,
         bgcolor: "whitesmoke",
-      }
-    }}>
+      },
+    }} label={
       <Stack direction="row" spacing={0}>
-        <Checkbox name="add-on" />
         <Box>
           <Typography fontWeight="500">{props.caption}</Typography>
           <Typography variant="body2" color="grey">
@@ -29,6 +31,13 @@ export default function AddOn(props: AddOnProps) {
           {`$${price}/${billingPeriod}`}
         </Box>
       </Stack>
-    </FormControl >
+    }
+      control={
+        <Checkbox
+          onChange={props.handleChange}
+          value={inputValue.toLowerCase()}
+        />
+      }
+    />
   );
 } 

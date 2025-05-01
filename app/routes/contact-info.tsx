@@ -1,4 +1,4 @@
-import type { Route } from "./+types/UserInfo";
+import type { Route } from "./+types/contact-info";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormControl, FormHelperText, FormLabel } from "@mui/material";
@@ -28,7 +28,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   return redirect("/billing");
 };
 
-export default function UserInfo({ }: Route.ComponentProps) {
+export default function Component({ }: Route.ComponentProps) {
   const fetcher = useFetcher();
   const {
     control,
@@ -67,6 +67,7 @@ export default function UserInfo({ }: Route.ComponentProps) {
               <FormHelperText>
                 {errors.email && errors.email.message}
               </FormHelperText>
+              <FormLabel>Email</FormLabel>
               <OutlinedInput {...field}
                 size="small"
                 placeholder="stephenking123@gmail.com"

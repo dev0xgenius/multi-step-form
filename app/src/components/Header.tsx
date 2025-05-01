@@ -32,7 +32,7 @@ export default function Header() {
         backgroundImage: `url("${bgImage}")`
       })
     }>
-      <Stack direction="row" spacing={3} sx={{ justifyContent: "center" }}>
+      <Stack direction="row" spacing={3} justifyContent="center">
         <TabButtons tabs={["/", "/billing", "/add-ons", "/summary"]} />
       </Stack>
     </AppBar>

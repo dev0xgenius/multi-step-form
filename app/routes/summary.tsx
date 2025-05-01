@@ -1,9 +1,9 @@
 import { Box, Container, Divider, Stack, Typography } from "@mui/material";
 import { Link } from "react-router";
-import type { Route } from "./+types/Summary";
+import type { Route } from "./+types/summary";
 import CustomCard from "~/src/components/CustomCard";
 
-export default function Summary({ }: Route.ComponentProps) {
+export default function Component({ }: Route.ComponentProps) {
   return (
     <CustomCard
       description="Double check everything looks OK before confirming"

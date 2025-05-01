@@ -16,7 +16,6 @@ import type { Route } from "./+types/root";
 import { Box, Stack, ThemeProvider } from "@mui/system";
 import theme from "~/src/theme";
 
-
 import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
@@ -38,15 +37,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <CssBaseline />
         <ThemeProvider theme={theme}>
           <Stack minHeight="100dvh" border={1} bgcolor="whitesmoke">
-            <CssBaseline />
             <Header />
             <Box component="main" p={2}>
               {children}
             </Box>
             <Stack direction={"row"} sx={{ m: "auto", mb: 0 }}>
-              {location.pathname != "/" && <Button onClick={goBack}>Go Back</Button>}
+              {
+                location.pathname != "/" &&
+                <Button onClick={goBack}>Go Back</Button>
+              }
               <Button type="submit" form="currentForm"
                 onClick={() => alert("Hi from Button")}>
                 {location.pathname != "/summary" ? "Next Step" : "Confirm"}
@@ -73,13 +75,15 @@ export default function App() {
       price: null,
       billingPeriod: "month",
     },
-    extras: []
+    extras: {
+      "online-service": false,
+      "larger-storage": false,
+      "customizabl-profile": false
+    }
   });
 
   return (
-    <>
-      <Outlet />
-    </>
+    <Outlet />
   )
 }
 
