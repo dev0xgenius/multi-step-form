@@ -8,14 +8,14 @@ export interface TabButtonProps {
   path?: string;
 }
 
-export default function TabButton({ caption, desc = "", tabNo, path = "/" }: TabButtonProps) {
+export default function TabButton(props: TabButtonProps) {
   const theme = useTheme();
 
   return (
-    <NavLink to={path} style={{ textDecoration: "none" }} viewTransition={true}>
+    <NavLink to={props.path || "/"} style={{ textDecoration: "none" }}
+      viewTransition={true}>
       <Stack spacing={theme.spacing(1)} direction="row"
-        sx={{ width: "max-content", alignItems: "center" }}
-      >
+        sx={{ width: "max-content", alignItems: "center" }}>
         <Button variant="outlined" sx={{
           p: "0rem",
           minWidth: "2.8rem",
@@ -24,7 +24,7 @@ export default function TabButton({ caption, desc = "", tabNo, path = "/" }: Tab
           color: "custom.lightBlue.main",
           borderColor: "custom.pastelBlue.main",
           borderRadius: "200px",
-        }}>{tabNo}</Button>
+        }}>{props.tabNo}</Button>
         <Stack sx={{
           display: "none",
           [theme.breakpoints.up("md")]: {
@@ -32,8 +32,12 @@ export default function TabButton({ caption, desc = "", tabNo, path = "/" }: Tab
           }
         }}
         >
-          <Typography variant="caption">{caption?.toUpperCase()}</Typography>
-          <Typography variant="body2">{desc?.toUpperCase()}</Typography>
+          <Typography variant="caption">
+            {props.caption?.toUpperCase()}
+          </Typography>
+          <Typography variant="body2">
+            {props.desc?.toUpperCase()}
+          </Typography>
         </Stack>
       </Stack >
     </NavLink >

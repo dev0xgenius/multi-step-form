@@ -9,6 +9,7 @@ import CustomCard from "~/src/components/CustomCard";
 import advancedSvg from "~/src/assets/images/icon-advanced.svg";
 import arcadeSvg from "~/src/assets/images/icon-arcade.svg";
 import proSvg from "~/src/assets/images/icon-pro.svg";
+import type { FormEvent } from "react";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   const result = await request.formData();
@@ -20,7 +21,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 export default function Component({ }: Route.ComponentProps) {
   const fetcher = useFetcher();
 
-  const submit = (evt: any) => {
+  const submit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     fetcher.submit(evt.currentTarget, { method: "post" });
   }

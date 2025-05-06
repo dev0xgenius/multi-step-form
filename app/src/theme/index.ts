@@ -41,7 +41,7 @@ let customTheme = createTheme({
   },
 
   shape: {
-    borderRadius: "0.786rem"
+    borderRadius: 10
   },
 
   typography: {

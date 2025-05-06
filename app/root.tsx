@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useEffect, useReducer } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -6,8 +6,8 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
-  useNavigate
+  useNavigate,
+  useNavigation
 } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,13 +20,18 @@ import '@fontsource/ubuntu/300.css';
 import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
+
 import { Button } from "@mui/material";
+import type { AppFormState } from "./lib/types";
+import { reducer } from "./lib/utils";
 import Header from "./src/components/Header";
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const location = useLocation();
   const navigate = useNavigate();
-  const goBack = useCallback(() => { navigate(-1) }, []);
+  const navigation = useNavigation();
+  const location = navigation.location;
+
+  const goBack = useCallback(() => { navigate(-1,) }, []);
 
   return (
     <html lang="en">
@@ -46,12 +51,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </Box>
             <Stack direction={"row"} sx={{ m: "auto", mb: 0 }}>
               {
-                location.pathname != "/" &&
+                location?.pathname != "/" &&
                 <Button onClick={goBack}>Go Back</Button>
               }
-              <Button type="submit" form="currentForm"
+              <Button type="submit" form="currentForm" id="submitBtn"
                 onClick={() => alert("Hi from Button")}>
-                {location.pathname != "/summary" ? "Next Step" : "Confirm"}
+                {location?.pathname != "/summary" ? "Next Step" : "Confirm"}
               </Button>
             </Stack>
           </Stack>
@@ -64,27 +69,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const [formStates, dispatch] = useReducer((prevState) => ({ ...prevState }), {
+  const initialState: AppFormState = {
     contact: {
       name: "",
       email: "",
-      phone: null,
+      phone: "",
     },
     plan: {
-      category: "",
-      price: null,
-      billingPeriod: "month",
+      category: "arcade",
+      price: 1,
+      billingPeriod: "monthly"
     },
     extras: {
       "online-service": false,
       "larger-storage": false,
-      "customizabl-profile": false
+      "customizable-profile": false
     }
-  });
+  };
+
+  const [formState, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <Outlet />
-  )
+    <Outlet context={{ formState, dispatch }} />
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
