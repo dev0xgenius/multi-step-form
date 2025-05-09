@@ -1,31 +1,64 @@
 import type { Route } from "./+types/billing";
 
-import { FormControl, RadioGroup, Switch, Typography } from "@mui/material";
-import { Container, Stack } from "@mui/system";
-import { useFetcher } from "react-router";
-import BillingCard from "~/components/BillingCard";
+import { Container } from "@mui/system";
+import { useNavigate, useOutletContext } from "react-router";
 import CustomCard from "~/components/CustomCard";
+import SwitchSelect from "~/components/SwitchSelect";
 
-import type { FormEvent } from "react";
+import { useEffect, type FormEvent } from "react";
+import BillingList from "~/components/BillingList";
+import { type BillingInfo, type OutletContext } from "~/lib/types";
 
-// const advancedSvg = "/assets/images/icon-dvanced.svg";
-// const arcadeSvg = "/assets/images/icon-arcade.svg";
-// const proSvg = "/assets/images/icon-pro.svg";
-
-export async function clientAction({ request }: Route.ClientActionArgs) {
-    const result = await request.formData();
-    alert(result.get("plan"));
-
-    return {};
-};
+const billings: BillingInfo[] = [
+    { price: { "mo": 1, "yr": 12 }, name: "arcade" },
+    { price: { "mo": 2, "yr": 24 }, name: "pro" },
+    { price: { "mo": 3, "yr": 36 }, name: "advanced" }
+];
 
 export default function Component({ }: Route.ComponentProps) {
-    const fetcher = useFetcher();
+    const { formState: { plan }, dispatch } = useOutletContext<OutletContext>();
+    const { billingPeriod } = plan;
+    const navigate = useNavigate();
+
+    const handleSwitchSelect = (checked: boolean) => {
+        const switchBillingPeriod = (bool: boolean) => (
+            !bool ? "mo" : "yr"
+        );
+
+        dispatch({
+            type: "UPDATE_BILLING",
+            data: { billingPeriod: switchBillingPeriod(checked) }
+        });
+    };
 
     const submit = (evt: FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
-        fetcher.submit(evt.currentTarget, { method: "post" });
+        let formData = new FormData(evt.currentTarget);
+
+        dispatch({
+            type: "UPDATE_BILLING",
+            data: {
+                category: formData.get("plan"),
+                billingPeriod: formData.get("billingPeriod")
+            }
+        });
+        navigate("/add-ons", { viewTransition: true });
     }
+
+    useEffect(() => {
+        const form = document.querySelector<HTMLFormElement>("#currentForm");
+
+        return () => {
+            let formData = new FormData(form ?? undefined);
+            dispatch({
+                type: "UPDATE_BILLING",
+                data: {
+                    category: formData.get("plan"),
+                    billingPeriod: formData.get("billingPeriod")
+                }
+            })
+        }
+    }, []);
 
     return (
         <CustomCard
@@ -34,44 +67,21 @@ export default function Component({ }: Route.ComponentProps) {
         >
             <Container disableGutters={true}>
                 <form id="currentForm" onSubmit={submit}>
-                    <FormControl sx={{ width: "100%" }}>
-                        <RadioGroup name="plan" defaultValue={"arcade"}>
-                            <Stack width="100%">
-                                <BillingCard
-                                    src="/images/icon-arcade.svg"
-                                    price={2}
-                                    title="Arcade"
-                                    billingPeriod={"mo"}
-                                />
-                                <BillingCard
-                                    src="/images/icon-pro.svg"
-                                    price={2}
-                                    title="Pro"
-                                    billingPeriod={"mo"}
-                                />
-                                <BillingCard
-                                    src="/images/icon-advanced.svg"
-                                    price={2}
-                                    title="Advanced"
-                                    billingPeriod={"mo"}
-                                />
-                            </Stack>
-                        </RadioGroup>
-                    </FormControl>
+                    <BillingList
+                        billings={billings}
+                        imgs={["/images/icon-arcade.svg",
+                            "/images/icon-pro.svg",
+                            "/images/icon-advanced.svg"
+                        ]}
+                    />
+                    <SwitchSelect
+                        optionLabels={["Monthly", "Yearly"]}
+                        name="billingPeriod"
+                        value={billingPeriod}
+                        checked={billingPeriod == "mo" ? false : true}
+                        onSwitchSelect={handleSwitchSelect}
+                    />
                 </form>
-                <Stack direction="row" alignItems="center" spacing={1} sx={{
-                    borderRadius: 1,
-                    border: 1,
-                    justifyContent: "center",
-                    p: 1, mt: 3,
-                    borderColor: "lightgrey"
-                }}>
-                    <Typography>Monthly</Typography>
-                    <Switch size="medium" classes={{
-                        root: "height: 2rem"
-                    }} />
-                    <Typography>Yearly</Typography>
-                </Stack>
             </Container>
         </CustomCard >
     );

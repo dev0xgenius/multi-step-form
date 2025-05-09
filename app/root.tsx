@@ -1,13 +1,11 @@
-import React, { useCallback, useEffect, useReducer } from "react";
+import React, { useReducer } from "react";
 import {
     isRouteErrorResponse,
     Links,
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration,
-    useNavigate,
-    useNavigation
+    ScrollRestoration
 } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -21,18 +19,12 @@ import '@fontsource/ubuntu/400.css';
 import '@fontsource/ubuntu/500.css';
 import '@fontsource/ubuntu/700.css';
 
-import { Button } from "@mui/material";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import type { AppFormState } from "./lib/types";
 import { reducer } from "./lib/utils";
-import Header from "./components/Header";
 
 export function Layout({ children }: { children: React.ReactNode }) {
-    const navigate = useNavigate();
-    const navigation = useNavigation();
-    const location = navigation.location;
-
-    const goBack = useCallback(() => { navigate(-1,) }, []);
-
     return (
         <html lang="en">
             <head>
@@ -49,23 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                         <Box component="main" p={2}>
                             {children}
                         </Box>
-                        <Stack direction={"row"} sx={{ m: "auto", mb: 0 }}>
-                            {
-                                location?.pathname != "/" &&
-                                <Button onClick={goBack}>Go Back</Button>
-                            }
-                            <Button
-                                type="submit"
-                                form="currentForm"
-                                id="submitBtn"
-                                onClick={() => alert("Hi from Button")}
-                            >
-                                {
-                                    location?.pathname != "/summary"
-                                        ? "Next Step" : "Confirm"
-                                }
-                            </Button>
-                        </Stack>
+                        <Footer />
                     </Stack>
                 </ThemeProvider>
                 <ScrollRestoration />
@@ -84,8 +60,7 @@ export default function App() {
         },
         plan: {
             category: "arcade",
-            price: 1,
-            billingPeriod: "monthly"
+            billingPeriod: "mo"
         },
         extras: {
             "online-service": false,
