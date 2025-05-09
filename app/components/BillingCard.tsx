@@ -1,65 +1,91 @@
 import {
-  Card,
-  CardContent,
-  CardMedia,
-  Container,
-  FormControlLabel,
-  Radio,
-  Stack,
-  Typography
+    Card,
+    CardContent,
+    CardMedia,
+    Container,
+    FormControlLabel,
+    Radio,
+    Stack,
+    useRadioGroup,
+    Typography
 } from "@mui/material";
+import { useOutletContext } from "react-router";
 
+import type { BillingInfo, OutletContext } from "~/lib/types";
+import { capitalize } from "~/lib/utils";
 
-export interface BillingCardProps {
-  src: string;
-  price: number;
-  title: string;
-  billingPeriod?: "mo" | "yr";
+export interface BillingCardProps extends BillingInfo {
+    src: string;
 };
 
-export default function BillingCard({
-  src, title, price, billingPeriod
-}: BillingCardProps) {
-  return (
-    <FormControlLabel sx={{
-      p: 0, m: 0,
-      '& > span': {
-        display: "block",
-        width: "100%"
-      }
-    }} value={title.toLowerCase()} label={
-      <Card component={Container} disableGutters={true} variant="outlined" sx={{
-        '&:hover, &.selected': {
-          border: 2,
-          borderColor: "primary.main",
-          bgcolor: "whitesmoke",
-        }
-      }} >
-        <CardContent sx={{ position: "relative" }}>
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <CardMedia sx={{ width: 40, display: "flex", alignItems: "center" }}>
-              <img src={src} width="100%" height="auto" />
-            </CardMedia>
-            <Stack spacing={0}>
-              <Typography fontWeight="500">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                {`$${price}/${billingPeriod}`}
-              </Typography>
-            </Stack>
-          </Stack>
-        </CardContent>
-      </ Card>
-    }
+const mediaStyling = {
+    width: 40,
+    display: "flex",
+    alignItems: "center"
+} as const;
 
-      control={
-        <Radio sx={theme => ({
-          ...theme.mixins.coverParentAbsolutely,
-          visibility: "hidden"
-        })}
+const stylesOnSelected = {
+    border: 2,
+    borderColor: "primary.main",
+    bgcolor: "whitesmoke",
+} as const;
+
+function BillingCardLabel(props: BillingCardProps) {
+    const context = useRadioGroup();
+    const { formState: { plan } } = useOutletContext<OutletContext>();
+    const { billingPeriod } = plan;
+
+    const isSelected = props.name === context?.value;
+    const title = capitalize(props.name);
+
+    return (
+        <Card
+            component={Container}
+            disableGutters={true}
+            variant="outlined" sx={{
+                '&:hover': { ...stylesOnSelected },
+                '&': isSelected && { ...stylesOnSelected } || {}
+            }}>
+            <CardContent sx={{ position: "relative" }}>
+                <Stack direction="row" alignItems="center" spacing={2}>
+                    <CardMedia sx={mediaStyling}>
+                        <img src={props.src} width="100%" height="auto" />
+                    </CardMedia>
+                    <Stack spacing={0}>
+                        <Typography fontWeight="500">
+                            {title}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                            {`$${props.price[billingPeriod]}/${billingPeriod}`}
+                        </Typography>
+                    </Stack>
+                </Stack>
+            </CardContent>
+        </Card>
+    );
+}
+
+export default function BillingCard(props: BillingCardProps) {
+    const labelStyle = {
+        p: 0, m: 0,
+        '& > span': {
+            display: "block",
+            width: "100%"
+        }
+    } as const;
+
+    return (
+        <FormControlLabel sx={labelStyle}
+            value={props.name}
+            label={<BillingCardLabel {...props} />}
+            control={
+                <Radio
+                    sx={theme => ({
+                        ...theme.mixins.coverParentAbsolutely,
+                        visibility: "hidden"
+                    })}
+                />
+            }
         />
-      }
-    />
-  );
+    );
 };
