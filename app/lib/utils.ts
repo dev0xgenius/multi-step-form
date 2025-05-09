@@ -11,10 +11,26 @@ export function reducer(state: AppFormState, action: FormStateAction) {
                     ...state,
                     contact: Object.assign({}, state.contact, data)
                 };
-
-                return updatedState;
             } else throw Error("Mumu!!! Check that thing...");
+            break;
+        case "UPDATE_BILLING":
+            updatedState = {
+                ...state,
+                plan: Object.assign({}, state.plan, data)
+            }
+            break;
         default:
             return state;
     }
+
+    return updatedState;
+};
+
+export function capitalize(str: string) {
+    const sep = " ";
+    const items = str.split(sep);
+
+    return items.map(item => (
+        item.replace(item[0], item[0].toUpperCase())
+    )).join(sep);
 }
