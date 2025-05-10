@@ -31,7 +31,7 @@ export default function Header() {
             })
         }>
             <Stack direction="row" spacing={3} justifyContent="center">
-                <TabButtons tabs={["/", "/billing", "/add-ons", "/summary"]} />
+                <TabButtons tabs={["/", "/billing", "/extras", "/summary"]} />
             </Stack>
         </AppBar>
     );

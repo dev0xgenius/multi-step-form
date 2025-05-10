@@ -42,7 +42,7 @@ export default function Component({ }: Route.ComponentProps) {
                 billingPeriod: formData.get("billingPeriod")
             }
         });
-        navigate("/add-ons", { viewTransition: true });
+        navigate("/extras", { viewTransition: true });
     }
 
     useEffect(() => {

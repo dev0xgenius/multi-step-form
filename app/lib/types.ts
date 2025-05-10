@@ -27,6 +27,7 @@ export type AppFormState = {
         "online-service": boolean;
         "larger-storage": boolean;
         "customizable-profile": boolean;
+        [key: string]: boolean;
     };
     [key: string]: unknown;
 };
@@ -36,11 +37,19 @@ export type OutletContext = {
     dispatch: ActionDispatch<[action: FormStateAction]>
 };
 
+export type Price = {
+    "mo": number;
+    "yr": number;
+    [key: string]: number;
+};
+
 export type BillingInfo = {
     name: string;
-    price: {
-        "mo": number;
-        "yr": number;
-        [key: string]: number;
-    };
+    price: Price;
+}
+
+export type AddOnType = {
+    caption: string;
+    description: string;
+    price: Price;
 }

@@ -2,7 +2,7 @@ import type { AppFormState, FormStateAction } from "./types";
 
 export function reducer(state: AppFormState, action: FormStateAction) {
     const { data } = action;
-    let updatedState: AppFormState;
+    let updatedState: AppFormState = { ...state };
 
     switch (action.type) {
         case "UPDATE_CONTACT":
@@ -11,7 +11,7 @@ export function reducer(state: AppFormState, action: FormStateAction) {
                     ...state,
                     contact: Object.assign({}, state.contact, data)
                 };
-            } else throw Error("Mumu!!! Check that thing...");
+            }
             break;
         case "UPDATE_BILLING":
             updatedState = {
@@ -19,8 +19,12 @@ export function reducer(state: AppFormState, action: FormStateAction) {
                 plan: Object.assign({}, state.plan, data)
             }
             break;
-        default:
-            return state;
+        case "UPDATE_EXTRAS":
+            updatedState = {
+                ...state,
+                extras: Object.assign({}, state.extras, data)
+            }
+            break;
     }
 
     return updatedState;
