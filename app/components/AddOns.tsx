@@ -1,9 +1,9 @@
 import { FormGroup, List, Stack } from "@mui/material";
-import type { AddOnType } from "~/lib/types";
+import type { AddOnInfo } from "~/lib/types";
 import AddOn from "./AddOn";
 
 export interface AddOnsProps {
-    addOns: AddOnType[];
+    addOns: AddOnInfo[];
 }
 
 export default function AddOns({ addOns }: AddOnsProps) {
@@ -12,7 +12,7 @@ export default function AddOns({ addOns }: AddOnsProps) {
             <Stack>
                 {addOns.map((addOn, index) => (
                     <AddOn
-                        caption={addOn.caption}
+                        caption={addOn.name}
                         description={addOn.description}
                         price={addOn.price}
                         key={index}

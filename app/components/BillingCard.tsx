@@ -6,12 +6,17 @@ import {
     FormControlLabel,
     Radio,
     Stack,
-    useRadioGroup,
-    Typography
+    Typography,
+    useRadioGroup
 } from "@mui/material";
 import { useOutletContext } from "react-router";
 
-import type { BillingInfo, OutletContext } from "~/lib/types";
+import type {
+    BillingInfo,
+    BillingPeriod,
+    OutletContext
+} from "~/lib/types";
+
 import { capitalize } from "~/lib/utils";
 
 export interface BillingCardProps extends BillingInfo {
@@ -30,11 +35,12 @@ const stylesOnSelected = {
     bgcolor: "whitesmoke",
 } as const;
 
-function BillingCardLabel(props: BillingCardProps) {
+function BillingCardLabel(props:
+    BillingCardProps & { billingPeriod: BillingPeriod }
+) {
     const context = useRadioGroup();
-    const { formState: { plan } } = useOutletContext<OutletContext>();
-    const { billingPeriod } = plan;
 
+    const priceTag = `$${props.price[props.billingPeriod]}/${props.billingPeriod}`;
     const isSelected = props.name === context?.value;
     const title = capitalize(props.name);
 
@@ -56,7 +62,7 @@ function BillingCardLabel(props: BillingCardProps) {
                             {title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary">
-                            {`$${props.price[billingPeriod]}/${billingPeriod}`}
+                            {priceTag}
                         </Typography>
                     </Stack>
                 </Stack>
@@ -65,19 +71,26 @@ function BillingCardLabel(props: BillingCardProps) {
     );
 }
 
+const labelStyle = {
+    p: 0, m: 0,
+    '& > span': {
+        display: "block",
+        width: "100%"
+    }
+} as const;
+
 export default function BillingCard(props: BillingCardProps) {
-    const labelStyle = {
-        p: 0, m: 0,
-        '& > span': {
-            display: "block",
-            width: "100%"
-        }
-    } as const;
+    const { formState: { plan } } = useOutletContext<OutletContext>();
 
     return (
         <FormControlLabel sx={labelStyle}
             value={props.name}
-            label={<BillingCardLabel {...props} />}
+            label={
+                <BillingCardLabel
+                    billingPeriod={plan.billingPeriod}
+                    {...props}
+                />
+            }
             control={
                 <Radio
                     sx={theme => ({

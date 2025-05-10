@@ -14,17 +14,17 @@ export async function loader({ request }: Route.LoaderArgs) {
 
     let data = [
         {
-            caption: "Online Service",
+            name: "Online Service",
             description: "Access to multiplayer games",
             price: { "mo": 1, "yr": 4 }
         },
         {
-            caption: "Larger Storage",
+            name: "Larger Storage",
             description: "Extra 1TB of cloud save",
             price: { "mo": 2, "yr": 8 }
         },
         {
-            caption: "Customizable Profile",
+            name: "Customizable Profile",
             description: "Custom theme on your profile",
             price: { "mo": 3, "yr": 12 }
         }

@@ -20,7 +20,8 @@ export type BillingPeriod = "mo" | "yr";
 export type AppFormState = {
     contact: z.infer<typeof ContactFormSchema>;
     plan: {
-        category: "arcade" | "pro" | "advanced";
+        name: "arcade" | "pro" | "advanced";
+        price: Price;
         billingPeriod: BillingPeriod;
     };
     extras: {
@@ -46,10 +47,10 @@ export type Price = {
 export type BillingInfo = {
     name: string;
     price: Price;
-}
+};
 
-export type AddOnType = {
-    caption: string;
+export type AddOnInfo = {
+    name: string;
     description: string;
     price: Price;
-}
+};

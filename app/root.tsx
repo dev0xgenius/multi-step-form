@@ -59,7 +59,8 @@ export default function App() {
             phone: "",
         },
         plan: {
-            category: "arcade",
+            name: "arcade",
+            price: { "mo": 1, "yr": 4 },
             billingPeriod: "mo"
         },
         extras: {

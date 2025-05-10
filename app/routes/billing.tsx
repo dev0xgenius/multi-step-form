@@ -38,7 +38,7 @@ export default function Component({ }: Route.ComponentProps) {
         dispatch({
             type: "UPDATE_BILLING",
             data: {
-                category: formData.get("plan"),
+                ...(JSON.parse(String(formData.get("plan")))),
                 billingPeriod: formData.get("billingPeriod")
             }
         });
@@ -53,7 +53,7 @@ export default function Component({ }: Route.ComponentProps) {
             dispatch({
                 type: "UPDATE_BILLING",
                 data: {
-                    category: formData.get("plan"),
+                    ...(JSON.parse(String(formData.get("plan")))),
                     billingPeriod: formData.get("billingPeriod")
                 }
             })
