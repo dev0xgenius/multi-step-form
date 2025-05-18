@@ -1,4 +1,10 @@
-import { createTheme, type CSSProperties } from "@mui/material/styles";
+import {
+    createTheme,
+    type CSSProperties,
+    responsiveFontSizes
+} from "@mui/material/styles";
+
+import { TextFieldDefaultProps } from "./textField.ts";
 
 declare module "@mui/material/styles" {
     interface Palette {
@@ -62,7 +68,7 @@ let customTheme = createTheme({
     },
 
     shape: {
-        borderRadius: 10
+        borderRadius: 10,
     },
 
     typography: {
@@ -83,6 +89,10 @@ customTheme = createTheme(customTheme, {
                 spacing: 1
             }
         },
+
+        MuiTextField: {
+            defaultProps: { ...TextFieldDefaultProps }
+        }
     },
 
     mixins: {
@@ -102,5 +112,7 @@ customTheme = createTheme(customTheme, {
         }
     }
 });
+
+customTheme = responsiveFontSizes(customTheme);
 
 export default customTheme;

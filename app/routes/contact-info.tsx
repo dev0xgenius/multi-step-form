@@ -1,13 +1,9 @@
-import type { Route } from "./+types/contact-info";
-
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormControl, FormHelperText, FormLabel } from "@mui/material";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import { Stack } from "@mui/system";
+import { Stack, TextField } from "@mui/material";
 import { useCallback, useEffect } from "react";
-import { Controller, useForm, useWatch, type SubmitHandler } from "react-hook-form";
+import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 
-import { useNavigate, useOutletContext, useBlocker } from "react-router";
+import { useBlocker, useNavigate, useOutletContext } from "react-router";
 import {
     ContactFormSchema,
     type ContactForm,
@@ -16,7 +12,16 @@ import {
 
 import CustomCard from "~/components/CustomCard";
 
-export default function Component({ }: Route.ComponentProps) {
+export const CustomInputLabelProps = {
+    shrink: true,
+    disableAnimation: true,
+    sx: {
+        position: "static",
+        transform: "none",
+    }
+} as const;
+
+export default function Page() {
     const { formState, dispatch } = useOutletContext<OutletContext>();
     const { contact } = formState;
     const {
@@ -55,47 +60,38 @@ export default function Component({ }: Route.ComponentProps) {
             title="Personal Info"
             description="Please fill in your name, email address and phone number"
         >
-            <form id="currentForm"
-                onSubmit={handleSubmit(handleSubmitData)}
-            >
+            <form id="currentForm" onSubmit={handleSubmit(handleSubmitData)}>
                 <Stack direction='column' spacing={2}>
                     <Controller name={"name"} control={control}
                         render={({ field }) => (
-                            <FormControl error={!!errors.name}>
-                                <FormHelperText>
-                                    {errors.name && errors.name.message}
-                                </FormHelperText>
-                                <FormLabel>Name</FormLabel>
-                                <OutlinedInput {...field}
-                                    placeholder="Stephen King" size="small"
-                                />
-                            </FormControl>
+                            <TextField
+                                error={!!errors.name}
+                                helperText={errors.name?.message}
+                                label="Name" placeholder="e.g Stephen King"
+                                {...field}
+                            />
                         )}
                     />
                     <Controller name="email" control={control}
                         render={({ field }) => (
-                            <FormControl error={!!errors.email}>
-                                <FormHelperText>
-                                    {errors.email && errors.email.message}
-                                </FormHelperText>
-                                <FormLabel>Email</FormLabel>
-                                <OutlinedInput {...field} size="small"
-                                    placeholder="stephenking123@gmail.com"
-                                />
-                            </FormControl>
+                            <TextField
+                                type="email"
+                                error={!!errors.email} label="Email"
+                                helperText={errors.email?.message}
+                                placeholder="e.g stephenking123@gmail.com"
+                                {...field}
+                            />
                         )}
                     />
                     <Controller name="phone" control={control}
                         render={({ field }) => (
-                            <FormControl error={!!errors.phone}>
-                                <FormHelperText>
-                                    {errors.phone && errors.phone.message}
-                                </FormHelperText>
-                                <FormLabel>Phone Number</FormLabel>
-                                <OutlinedInput {...field} size="small"
-                                    placeholder="+234 0123456789"
-                                />
-                            </FormControl>
+                            <TextField
+                                type="phone" label="Phone Number"
+                                error={!!errors.phone}
+                                helperText={errors.phone?.message}
+                                placeholder="e.g 234 6766636673"
+                                {...field}
+                            />
                         )}
                     />
                 </Stack>
