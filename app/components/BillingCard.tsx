@@ -24,18 +24,18 @@ export interface BillingCardProps extends BillingInfo {
 };
 
 const mediaStyling = {
-    width: 40,
+    width: 50,
     display: "flex",
     alignItems: "center"
 } as const;
 
 const stylesOnSelected = {
     border: 2,
-    borderColor: "primary.main",
-    bgcolor: "whitesmoke",
+    borderColor: "secondary.main",
+    bgcolor: "neutral.alabaster",
 } as const;
 
-function BillingCardLabel(props:
+export function BillingCardLabel(props:
     BillingCardProps & { billingPeriod: BillingPeriod }
 ) {
     const context = useRadioGroup();
@@ -53,17 +53,24 @@ function BillingCardLabel(props:
                 '&': isSelected && { ...stylesOnSelected } || {}
             }}>
             <CardContent sx={{ position: "relative" }}>
-                <Stack direction="row" alignItems="center" spacing={2}>
+                <Stack direction="row" alignItems="start" spacing={2}>
                     <CardMedia sx={mediaStyling}>
                         <img src={props.src} width="100%" height="auto" />
                     </CardMedia>
                     <Stack spacing={0}>
-                        <Typography fontWeight="500">
+                        <Typography fontWeight="500" variant="h6" color="primary">
                             {title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary">
                             {priceTag}
                         </Typography>
+                        {
+                            props.billingPeriod == "yr" ?
+                                <Typography variant="body2" mt={1} color="primary">
+                                    2 months free
+                                </Typography>
+                                : <></>
+                        }
                     </Stack>
                 </Stack>
             </CardContent>
@@ -92,11 +99,10 @@ export default function BillingCard(props: BillingCardProps) {
                 />
             }
             control={
-                <Radio
-                    sx={theme => ({
-                        ...theme.mixins.coverParentAbsolutely,
-                        visibility: "hidden"
-                    })}
+                <Radio sx={theme => ({
+                    ...theme.mixins.coverParentAbsolutely,
+                    visibility: "hidden"
+                })}
                 />
             }
         />

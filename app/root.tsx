@@ -36,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <body>
                 <CssBaseline />
                 <ThemeProvider theme={theme}>
-                    <Stack minHeight="100dvh" border={1} bgcolor="whitesmoke">
+                    <Stack minHeight="100dvh" bgcolor="neutral.magnolia">
                         <Header />
                         <Box component="main" p={2}>
                             {children}
@@ -72,9 +72,7 @@ export default function App() {
 
     const [formState, dispatch] = useReducer(reducer, initialState);
 
-    return (
-        <Outlet context={{ formState, dispatch }} />
-    );
+    return <Outlet context={{ formState, dispatch }} />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

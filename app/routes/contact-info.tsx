@@ -12,15 +12,6 @@ import {
 
 import CustomCard from "~/components/CustomCard";
 
-export const CustomInputLabelProps = {
-    shrink: true,
-    disableAnimation: true,
-    sx: {
-        position: "static",
-        transform: "none",
-    }
-} as const;
-
 export default function Page() {
     const { formState, dispatch } = useOutletContext<OutletContext>();
     const { contact } = formState;
@@ -75,9 +66,8 @@ export default function Page() {
                     <Controller name="email" control={control}
                         render={({ field }) => (
                             <TextField
-                                type="email"
-                                error={!!errors.email} label="Email"
-                                helperText={errors.email?.message}
+                                type="email" error={!!errors.email}
+                                label="Email" helperText={errors.email?.message}
                                 placeholder="e.g stephenking123@gmail.com"
                                 {...field}
                             />

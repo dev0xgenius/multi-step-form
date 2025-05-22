@@ -2,19 +2,33 @@ import { Button, Stack } from "@mui/material";
 import { useCallback } from "react";
 import { useLocation, useNavigate } from "react-router";
 
+export const footerStyles = {
+    width: "100%",
+    m: "auto", mb: 0, p: 2,
+    justifyContent: "space-between",
+    bgcolor: "neutral.white",
+} as const;
+
 export default function Footer() {
     const location = useLocation();
     const navigate = useNavigate();
     const goBack = useCallback(() => { navigate(-1,) }, []);
 
     return (
-        <Stack direction={"row"} sx={{ m: "auto", mb: 0 }}>
+        <Stack direction="row" {...footerStyles}>
             <Button
-                sx={location?.pathname == "/" ? { display: "none" } : undefined}
+                sx={{
+                    visibility: location?.pathname == "/" ? "hidden" : "initial",
+                    color: "neutral.coolGray"
+                }}
                 onClick={goBack}
             >Go Back</Button>
-            <Button type="submit" form="currentForm" id="submitBtn">
-                {location?.pathname == "/summary" ? "Confirm" : "Next Step"}
+            <Button
+                type="submit"
+                variant="contained"
+                form="currentForm"
+                id="submitBtn"
+            >{location?.pathname == "/summary" ? "Confirm" : "Next Step"}
             </Button>
         </Stack>
     );

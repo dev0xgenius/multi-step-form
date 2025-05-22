@@ -30,7 +30,7 @@ export default function BillingList({ billings, imgs }: BillingListProps) {
 
     return (
         <FormControl sx={{ width: "100%" }}>
-            <RadioGroup sx={{ gap: 1 }}
+            <RadioGroup sx={{ gap: 2 }}
                 defaultValue={plan.name}
                 onChange={handleChange}
             >
@@ -44,9 +44,7 @@ export default function BillingList({ billings, imgs }: BillingListProps) {
                     ))
                 }
             </RadioGroup>
-            <input
-                type="hidden"
-                name="plan"
+            <input type="hidden" name="plan"
                 defaultValue={JSON.stringify(currentBilling)}
             />
         </FormControl>

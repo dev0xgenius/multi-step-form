@@ -1,6 +1,7 @@
 import {
     createTheme,
     type CSSProperties,
+    type PaletteColor,
     responsiveFontSizes
 } from "@mui/material/styles";
 
@@ -13,12 +14,13 @@ declare module "@mui/material/styles" {
             lightBlue: Palette['primary'];
             strawberryRed: Palette['primary'];
         };
-
-        coolGray: Palette['primary'];
-        lightGray: Palette['primary'];
-        magnolia: Palette['primary'];
-        alabaster: Palette['primary'];
-        white: Palette['primary'];
+        neutral: {
+            coolGray: string;
+            lightGray: string;
+            magnolia: string;
+            alabaster: string;
+            white: string;
+        };
     }
 
 
@@ -92,6 +94,13 @@ customTheme = createTheme(customTheme, {
 
         MuiTextField: {
             defaultProps: { ...TextFieldDefaultProps }
+        },
+
+        MuiButton: {
+            defaultProps: { size: "large" },
+            styleOverrides: {
+                root: { borderRadius: 4 },
+            }
         }
     },
 
@@ -106,13 +115,12 @@ customTheme = createTheme(customTheme, {
             justifyContent: "center"
         },
         highlightBorder: {
+            bgcolor: "neutral.alabaster",
             borderRadius: 1,
-            border: 1,
             borderColor: "custom.pastelBlue.main"
         }
     }
 });
 
 customTheme = responsiveFontSizes(customTheme);
-
 export default customTheme;

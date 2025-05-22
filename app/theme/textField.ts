@@ -1,5 +1,6 @@
 export const InputProps = {
     notched: false,
+    size: "small",
     sx: {
         borderRadius: 0.618
     }
@@ -7,7 +8,12 @@ export const InputProps = {
 
 export const InputLabelProps = {};
 
+export const HelperTextProps = {
+    sx: { position: "absolute", right: 0 }
+} as const;
+
 export const TextFieldDefaultProps = {
+    margin: "dense",
     slotProps: {
         inputLabel: {
             shrink: true,
@@ -18,7 +24,8 @@ export const TextFieldDefaultProps = {
                 color: "primary.main"
             }
         },
-        input: { ...InputProps }
+        input: { ...InputProps },
+        formHelperText: { ...HelperTextProps }
     }
 } as const;
 

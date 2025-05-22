@@ -1,22 +1,34 @@
-import { Card, CardHeader, Typography, CardContent } from "@mui/material";
+import { Card, CardContent, CardHeader } from "@mui/material";
+import { type Theme } from "@mui/material/styles";
 
 export interface CustomCardProps {
-  title?: string;
-  description?: string;
-  children: React.ReactNode;
-}
+    title?: string;
+    description?: string;
+    children: React.ReactNode;
+};
+
+const styling = (theme: Theme) => ({
+    mt: -14, p: 1.5, px: 0.75,
+    boxShadow: `0rem 1rem 5rem -2rem ${theme.palette.neutral.lightGray}`,
+
+    '& .MuiCardHeader-title': {
+        color: theme.palette.primary.main,
+        fontSize: theme.typography.h4,
+        fontWeight: "bolder",
+    },
+    '& .MuiCardHeader-subheader': {
+        pt: .5,
+        fontSize: theme.typography.pxToRem(20)
+    }
+} as const);
 
 export default function CustomCard({ title, description, children }: CustomCardProps) {
-  return (
-    <Card sx={{ mt: -14, boxShadow: 24, p: 0.5 }}>
-      <CardHeader title=
-        {<Typography variant="h5" fontWeight="bolder" color="primary" paddingY={0.5}>
-          {title}
-        </Typography>
-        }
-        subheader={description}
-      />
-      <CardContent sx={{ paddingY: 0.5 }}>{children}</CardContent>
-    </Card>
-  );
+    return (
+        <Card sx={styling}>
+            <CardHeader title={title} subheader={description}
+            // TODO: Pad subheading text to the right or give max width
+            />
+            <CardContent>{children}</CardContent>
+        </Card>
+    );
 }
