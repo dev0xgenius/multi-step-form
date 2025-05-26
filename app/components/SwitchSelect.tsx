@@ -39,7 +39,8 @@ export default function SwitchSelect(props: SwitchSelectProps) {
     return (
         <Stack direction="row" spacing={1} sx={theme => ({
             ...theme.mixins.centerStack,
-            ...theme.mixins.highlightBorder,
+            bgcolor: "neutral.alabaster",
+            border: "none", borderRadius: 1,
             my: 4, mb: 0, p: 2,
         })}>
             <Typography>{props.optionLabels[0]}</Typography>

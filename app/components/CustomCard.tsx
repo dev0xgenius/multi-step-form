@@ -13,7 +13,7 @@ const styling = (theme: Theme) => ({
 
     '& .MuiCardHeader-title': {
         color: theme.palette.primary.main,
-        fontSize: theme.typography.h4,
+        fontSize: theme.typography.h3,
         fontWeight: "bolder",
     },
     '& .MuiCardHeader-subheader': {

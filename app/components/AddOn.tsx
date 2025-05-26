@@ -1,4 +1,12 @@
-import { Box, Checkbox, FormControlLabel, Stack, Typography } from "@mui/material";
+import {
+    Box,
+    Checkbox,
+    FormControlLabel,
+    Stack,
+    Typography,
+    type CSSProperties
+} from "@mui/material";
+import { useTheme } from "@mui/material";
 import { useOutletContext } from "react-router";
 import type { OutletContext, Price } from "~/lib/types";
 
@@ -6,7 +14,8 @@ export interface AddOnProps {
     caption: string;
     description: string;
     price: Price;
-}
+};
+
 
 export default function AddOn(props: AddOnProps) {
     const inputValue = props.caption
@@ -18,29 +27,48 @@ export default function AddOn(props: AddOnProps) {
         plan: { billingPeriod }
     } = formState;
 
+    const isChecked = formState.extras[inputValue];
+    let labelStyling: CSSProperties = {
+        display: "flex", gap: 1,
+        m: 0, p: 1, py: 2,
+        borderRadius: 1,
+        border: isChecked ? 2 : 1,
+        borderColor: isChecked && "secondary.main" || "neutral.lightGray",
+        bgcolor: isChecked ? "neutral.alabaster" : "initial",
+
+        '&:hover': { border: 2, bgcolor: "whitesmoke" },
+        '& .MuiTypography-root': { width: "100%" },
+    };
+
     return (
-        <FormControlLabel name="add-on" value={inputValue} sx={{
-            paddingY: 2, borderRadius: 1, border: 1, borderColor: "lightgrey",
-            '&:hover': {
-                border: 2,
-                bgcolor: "whitesmoke",
-            },
-        }} label={
-            <Stack direction="row" spacing={0}>
+        <FormControlLabel name="add-on" value={inputValue}
+            sx={labelStyling}
+            label={<Stack direction="row">
                 <Box>
-                    <Typography fontWeight="500">
+                    <Typography fontWeight="500" color="primary">
                         {props.caption}
                     </Typography>
                     <Typography variant="body2" color="grey">
                         {props.description}
                     </Typography>
                 </Box>
-                <Box m="auto" marginRight={2} color="grey" typography="body2">
+                <Box sx={{
+                    m: "auto", mr: 2,
+                    alignSelf: "center",
+                    color: "grey", typography: "body2"
+                }}>
                     {`+$${props.price[billingPeriod]}/${billingPeriod}`}
                 </Box>
-            </Stack>
-        }
-            control={<Checkbox defaultChecked={formState.extras[inputValue]} />}
+            </Stack>}
+            control={
+                <Checkbox
+                    defaultChecked={isChecked}
+                    color="secondary"
+                    sx={{
+                        border: 1
+                    }}
+                />
+            }
         />
     );
 } 

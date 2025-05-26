@@ -75,7 +75,7 @@ export default function Component({ loaderData }: Route.ComponentProps) {
             title="Pick add-ons"
             description="Add-ons help enhance your gaming experience">
             <form id="currentForm" onSubmit={handleSubmit}>
-                <FormControl>
+                <FormControl fullWidth>
                     <AddOns addOns={data} />
                 </FormControl>
             </form>

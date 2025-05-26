@@ -9,7 +9,7 @@ export interface AddOnsProps {
 export default function AddOns({ addOns }: AddOnsProps) {
     return (
         <FormGroup>
-            <Stack>
+            <Stack spacing={2}>
                 {addOns.map((addOn, index) => (
                     <AddOn
                         caption={addOn.name}

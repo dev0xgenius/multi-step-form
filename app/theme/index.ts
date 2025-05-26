@@ -115,9 +115,9 @@ customTheme = createTheme(customTheme, {
             justifyContent: "center"
         },
         highlightBorder: {
-            bgcolor: "neutral.alabaster",
-            borderRadius: 1,
-            borderColor: "custom.pastelBlue.main"
+            border: 2,
+            borderColor: customTheme.palette.secondary.main,
+            bgcolor: customTheme.palette.neutral.alabaster
         }
     }
 });
