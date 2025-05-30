@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { useOutletContext } from "react-router";
+import { useState } from 'react';
 import type { OutletContext, Price } from "~/lib/types";
 
 export interface AddOnProps {
@@ -18,7 +19,7 @@ export interface AddOnProps {
 
 
 export default function AddOn(props: AddOnProps) {
-    const inputValue = props.caption
+  const inputValue = props.caption
         .split(" ")
         .join("-")
         .toLowerCase();
@@ -27,16 +28,17 @@ export default function AddOn(props: AddOnProps) {
         plan: { billingPeriod }
     } = formState;
 
-    const isChecked = formState.extras[inputValue];
+    const [isChecked, setIsChecked] = useState(formState.extras[inputValue]);
+
     let labelStyling: CSSProperties = {
         display: "flex", gap: 1,
         m: 0, p: 1, py: 2,
         borderRadius: 1,
         border: isChecked ? 2 : 1,
+        bgcolor: isChecked && "neutral.alabaster" || undefined,
         borderColor: isChecked && "secondary.main" || "neutral.lightGray",
-        bgcolor: isChecked ? "neutral.alabaster" : "initial",
 
-        '&:hover': { border: 2, bgcolor: "whitesmoke" },
+        '&:hover': { bgcolor: "neutral.alabaster"},
         '& .MuiTypography-root': { width: "100%" },
     };
 
@@ -57,16 +59,14 @@ export default function AddOn(props: AddOnProps) {
                     alignSelf: "center",
                     color: "grey", typography: "body2"
                 }}>
-                    {`+$${props.price[billingPeriod]}/${billingPeriod}`}
+                  {`+$${props.price[billingPeriod]}/${billingPeriod}`}
                 </Box>
             </Stack>}
             control={
                 <Checkbox
-                    defaultChecked={isChecked}
+                    checked={isChecked}
+                    onChange={(e, checked) => setIsChecked(checked)}
                     color="secondary"
-                    sx={{
-                        border: 1
-                    }}
                 />
             }
         />
