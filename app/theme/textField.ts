@@ -2,7 +2,7 @@ export const InputProps = {
     notched: false,
     size: "small",
     sx: {
-        borderRadius: 0.618
+        borderRadius: 0.618,
     }
 } as const;
 
