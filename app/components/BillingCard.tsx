@@ -1,110 +1,108 @@
 import {
-    Card,
-    CardContent,
-    CardMedia,
-    Container,
-    FormControlLabel,
-    Radio,
-    Stack,
-    Typography,
-    useRadioGroup
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  FormControlLabel,
+  Radio,
+  Stack,
+  Typography,
+  useRadioGroup,
 } from "@mui/material";
 import { useOutletContext } from "react-router";
 
-import type {
-    BillingInfo,
-    BillingPeriod,
-    OutletContext
-} from "~/lib/types";
+import type { BillingInfo, BillingPeriod, OutletContext } from "~/lib/types";
 
 import { capitalize } from "~/lib/utils";
 
 export interface BillingCardProps extends BillingInfo {
-    src: string;
-};
+  src: string;
+}
 
 const mediaStyling = {
-    width: 50,
-    display: "flex",
-    alignItems: "center"
+  width: 50,
+  display: "flex",
+  alignItems: "center",
 } as const;
 
 const stylesOnSelected = {
-    border: 2,
-    borderColor: "secondary.main",
-    bgcolor: "neutral.alabaster",
+  border: 2,
+  borderColor: "secondary.main",
+  bgcolor: "neutral.alabaster",
 } as const;
 
-export function BillingCardLabel(props:
-    BillingCardProps & { billingPeriod: BillingPeriod }
+export function BillingCardLabel(
+  props: BillingCardProps & { billingPeriod: BillingPeriod },
 ) {
-    const context = useRadioGroup();
+  const context = useRadioGroup();
 
-    const priceTag = `$${props.price[props.billingPeriod]}/${props.billingPeriod}`;
-    const isSelected = props.name === context?.value;
-    const title = capitalize(props.name);
+  const priceTag = `$${props.price[props.billingPeriod]}/${props.billingPeriod}`;
+  const isSelected = props.name === context?.value;
+  const title = capitalize(props.name);
 
-    return (
-        <Card
-            component={Container}
-            disableGutters={true}
-            variant="outlined" sx={{
-                '&:hover': { ...stylesOnSelected },
-                '&': isSelected && { ...stylesOnSelected } || {}
-            }}>
-            <CardContent sx={{ position: "relative" }}>
-                <Stack direction="row" alignItems="start" spacing={2}>
-                    <CardMedia sx={mediaStyling}>
-                        <img src={props.src} width="100%" height="auto" />
-                    </CardMedia>
-                    <Stack spacing={0}>
-                        <Typography fontWeight="500" variant="h6" color="primary">
-                            {title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                            {priceTag}
-                        </Typography>
-                        {
-                            props.billingPeriod == "yr" ?
-                                <Typography variant="body2" mt={1} color="primary">
-                                    2 months free
-                                </Typography>
-                                : <></>
-                        }
-                    </Stack>
-                </Stack>
-            </CardContent>
-        </Card>
-    );
+  return (
+    <Card
+      component={Container}
+      disableGutters={true}
+      variant="outlined"
+      sx={{
+        "&:hover": { ...stylesOnSelected },
+        "&": (isSelected && { ...stylesOnSelected }) || {},
+      }}
+    >
+      <CardContent sx={{ position: "relative" }}>
+        <Stack direction="row" alignItems="start" spacing={2}>
+          <CardMedia sx={mediaStyling}>
+            <img src={props.src} width="100%" height="auto" />
+          </CardMedia>
+          <Stack spacing={0}>
+            <Typography fontWeight="500" variant="h6" color="primary">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              {priceTag}
+            </Typography>
+            {props.billingPeriod == "yr" ? (
+              <Typography variant="body2" mt={1} color="primary">
+                2 months free
+              </Typography>
+            ) : (
+              <></>
+            )}
+          </Stack>
+        </Stack>
+      </CardContent>
+    </Card>
+  );
 }
 
 const labelStyle = {
-    p: 0, m: 0,
-    '& > span': {
-        display: "block",
-        width: "100%"
-    }
+  p: 0,
+  m: 0,
+  "& > span": {
+    display: "block",
+    width: "100%",
+  },
 } as const;
 
 export default function BillingCard(props: BillingCardProps) {
-    const { formState: { plan } } = useOutletContext<OutletContext>();
+  const {
+    formState: { plan },
+  } = useOutletContext<OutletContext>();
 
-    return (
-        <FormControlLabel sx={labelStyle}
-            value={props.name}
-            label={
-                <BillingCardLabel
-                    billingPeriod={plan.billingPeriod}
-                    {...props}
-                />
-            }
-            control={
-                <Radio sx={theme => ({
-                    ...theme.mixins.coverParentAbsolutely,
-                    visibility: "hidden"
-                })}
-                />
-            }
+  return (
+    <FormControlLabel
+      sx={labelStyle}
+      value={props.name}
+      label={<BillingCardLabel billingPeriod={plan.billingPeriod} {...props} />}
+      control={
+        <Radio
+          sx={(theme) => ({
+            ...theme.mixins.coverParentAbsolutely,
+            visibility: "hidden",
+          })}
         />
-    );
-};
+      }
+    />
+  );
+}

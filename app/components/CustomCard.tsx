@@ -21,6 +21,7 @@ const styling = (theme: Theme) =>
     },
     "& .MuiCardHeader-subheader": {
       pt: 0.5,
+      color: "gray",
     },
   }) as const;
 
