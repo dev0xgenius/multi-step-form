@@ -37,7 +37,7 @@ export function BillingCardLabel(
   const context = useRadioGroup();
 
   const priceTag = `$${props.price[props.billingPeriod]}/${props.billingPeriod}`;
-  const isSelected = props.name === context?.value;
+  const isSelected = props.name === JSON.parse(context?.value).name;
   const title = capitalize(props.name);
 
   return (
@@ -89,12 +89,18 @@ export default function BillingCard(props: BillingCardProps) {
   const {
     formState: { plan },
   } = useOutletContext<OutletContext>();
+  const radioContext = useRadioGroup();
+  const billingInfo = {
+    price: props.price,
+    name: props.name,
+  };
 
   return (
     <FormControlLabel
       sx={labelStyle}
-      value={props.name}
+      value={JSON.stringify(billingInfo)}
       label={<BillingCardLabel billingPeriod={plan.billingPeriod} {...props} />}
+      name={radioContext?.name}
       control={
         <Radio
           sx={(theme) => ({

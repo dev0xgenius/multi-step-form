@@ -43,6 +43,7 @@ export default function Component({}: Route.ComponentProps) {
         billingPeriod: formData.get("billingPeriod"),
       },
     });
+
     navigate("/extras");
   };
 

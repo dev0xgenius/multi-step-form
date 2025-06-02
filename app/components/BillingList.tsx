@@ -24,7 +24,7 @@ export default function BillingList({ billings, imgs }: BillingListProps) {
   );
 
   const handleChange = (_: ChangeEvent<HTMLInputElement>, value: string) => {
-    let billing = findBillingWithName(value);
+    let billing = JSON.parse(value);
     setCurrentBilling((prevState) => {
       return billing ?? prevState;
     });
@@ -34,7 +34,8 @@ export default function BillingList({ billings, imgs }: BillingListProps) {
     <FormControl sx={{ width: "100%" }}>
       <RadioGroup
         sx={{ gap: 2 }}
-        defaultValue={plan.name}
+        value={JSON.stringify(currentBilling)}
+        name="plan"
         onChange={handleChange}
       >
         {billings.map((billingInfo, index) => (

@@ -50,8 +50,6 @@ export type BillingInfo = {
   price: Price;
 };
 
-export type AddOnInfo = {
+export interface AddOnInfo extends BillingInfo {
   name: string;
-  description: string;
-  price: Price;
-};
+}
