@@ -64,9 +64,9 @@ export default function App() {
       billingPeriod: "mo",
     },
     extras: {
-      "online-service": undefined,
-      "larger-storage": undefined,
-      "customizable-profile": undefined,
+      "online-service": false,
+      "larger-storage": false,
+      "customizable-profile": false,
     },
   };
 

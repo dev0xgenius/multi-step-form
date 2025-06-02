@@ -3,16 +3,13 @@ import {
   capitalize,
   Container,
   Divider,
-  List,
-  ListItem,
-  ListItemText,
   Stack,
   Typography,
 } from "@mui/material";
 import { Link, useOutletContext } from "react-router";
+import AddOns from "~/components/AddOns";
 import CustomCard from "~/components/CustomCard";
-import type { OutletContext } from "~/lib/types";
-import type { Route } from "./+types/summary";
+import type { AddOnInfo, OutletContext } from "~/lib/types";
 
 const styling = {
   bgcolor: "neutral.alabaster",
@@ -21,13 +18,14 @@ const styling = {
   mb: 2,
 } as const;
 
-export default function Component({}: Route.ComponentProps) {
+export default function Component() {
   const {
-    formState: { plan },
+    formState: { plan, extras },
   } = useOutletContext<OutletContext>();
 
   const billingPeriodText = plan.billingPeriod == "mo" ? "Monthly" : "Yearly";
   const billing = capitalize(`${plan.name} (${billingPeriodText})`);
+  const validExtras = Object.values(extras).filter((value) => !!value);
 
   return (
     <CustomCard
@@ -55,27 +53,9 @@ export default function Component({}: Route.ComponentProps) {
           </Typography>
         </Stack>
         <Divider sx={{ marginY: 2 }} />
-        <List
-          sx={{
-            "& .MuiListItem-root": {
-              p: 0,
-              justifyContent: "space-between",
-              "& .MuiListItemText-root": {
-                color: "gray",
-                "&:last-child": { textAlign: "right" },
-              },
-            },
-          }}
-        >
-          <ListItem disableGutters>
-            <ListItemText primary="Online Service" />
-            <ListItemText primary="+$1/mo" />
-          </ListItem>
-          <ListItem disableGutters>
-            <ListItemText primary="Larger Storage" />
-            <ListItemText primary="+2/mo" />
-          </ListItem>
-        </List>
+        <Stack>
+          <AddOns addOns={validExtras || undefined} readOnly />
+        </Stack>
       </Container>
       <Stack direction="row" p={1.5} justifyContent="space-between">
         <Typography color="gray">Total (per year)</Typography>

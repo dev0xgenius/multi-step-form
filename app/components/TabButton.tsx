@@ -12,34 +12,40 @@ export default function TabButton(props: TabButtonProps) {
   const theme = useTheme();
 
   return (
-    <NavLink to={props.path || "/"} style={{ textDecoration: "none" }}
-      viewTransition={true}>
-      <Stack spacing={theme.spacing(1)} direction="row"
-        sx={{ width: "max-content", alignItems: "center" }}>
-        <Button variant="outlined" sx={{
-          p: "0rem",
-          minWidth: "2.8rem",
-          width: "2.8rem",
-          height: "2.8rem",
-          color: "custom.lightBlue.main",
-          borderColor: "custom.pastelBlue.main",
-          borderRadius: "200px",
-        }}>{props.tabNo}</Button>
-        <Stack sx={{
-          display: "none",
-          [theme.breakpoints.up("md")]: {
-            display: "flex",
-          }
-        }}
+    <NavLink to={props.path || "/"} style={{ textDecoration: "none" }}>
+      <Stack
+        spacing={theme.spacing(1)}
+        direction="row"
+        sx={{ width: "max-content", alignItems: "center" }}
+      >
+        <Button
+          variant="outlined"
+          sx={{
+            p: "0rem",
+            minWidth: "2.8rem",
+            width: "2.8rem",
+            height: "2.8rem",
+            color: "custom.lightBlue.main",
+            borderColor: "custom.pastelBlue.main",
+            borderRadius: "200px",
+          }}
+        >
+          {props.tabNo}
+        </Button>
+        <Stack
+          sx={{
+            display: "none",
+            [theme.breakpoints.up("md")]: {
+              display: "flex",
+            },
+          }}
         >
           <Typography variant="caption">
             {props.caption?.toUpperCase()}
           </Typography>
-          <Typography variant="body2">
-            {props.desc?.toUpperCase()}
-          </Typography>
+          <Typography variant="body2">{props.desc?.toUpperCase()}</Typography>
         </Stack>
-      </Stack >
-    </NavLink >
+      </Stack>
+    </NavLink>
   );
 }

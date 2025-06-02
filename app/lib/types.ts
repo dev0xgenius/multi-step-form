@@ -17,11 +17,6 @@ export type ContactForm = z.infer<typeof ContactFormSchema>;
 
 export type BillingPeriod = "mo" | "yr";
 
-export type FormExtraField = {
-  name: string;
-  price: Price;
-};
-
 export type AppFormState = {
   contact: z.infer<typeof ContactFormSchema>;
   plan: {
@@ -30,11 +25,12 @@ export type AppFormState = {
     billingPeriod: BillingPeriod;
   };
   extras: {
-    "online-service": FormExtraField | undefined;
-    "larger-storage": FormExtraField | undefined;
-    "customizable-profile": FormExtraField | undefined;
-    [key: string]: FormExtraField | undefined;
+    "online-service": AddOnInfo | false;
+    "larger-storage": AddOnInfo | false;
+    "customizable-profile": AddOnInfo | false;
+    [key: string]: AddOnInfo | false;
   };
+
   [key: string]: unknown;
 };
 
