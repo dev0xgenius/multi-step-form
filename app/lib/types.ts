@@ -51,5 +51,5 @@ export type BillingInfo = {
 };
 
 export interface AddOnInfo extends BillingInfo {
-  name: string;
+  description: string;
 }
