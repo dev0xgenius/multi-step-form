@@ -36,12 +36,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <CssBaseline />
         <ThemeProvider theme={theme}>
-          <Stack minHeight="100dvh" bgcolor="neutral.magnolia">
+          <Stack minHeight="100dvh" maxWidth="100%" bgcolor="neutral.magnolia">
             <Header />
-            <Box component="main" p={2} zIndex={1}>
-              {children}
-            </Box>
-            <Footer />
+            <Stack flexGrow={1}>
+              <Box component="main" sx={{ p: 2, zIndex: 1 }}>
+                {children}
+              </Box>
+              <Footer />
+            </Stack>
           </Stack>
         </ThemeProvider>
         <ScrollRestoration />
@@ -79,7 +81,6 @@ export default function App() {
   };
 
   const [formState, dispatch] = useReducer(reducer, initialState);
-
   return <Outlet context={{ formState, dispatch }} />;
 }
 

@@ -7,24 +7,26 @@ export interface CustomCardProps {
   children: React.ReactNode;
 }
 
-const styling = (theme: Theme) =>
-  ({
-    mt: "-28%",
-    p: 1.5,
-    px: 0.75,
-    boxShadow: `0rem 1rem 5rem -2rem ${theme.palette.neutral.lightGray}`,
+const styling = (theme: Theme) => ({
+  maxWidth: theme.breakpoints.values.sm,
+  width: "100%",
+  m: "0 auto",
+  mt: "-28%",
+  p: 1.5,
+  px: 0.75,
+  boxShadow: `0rem 1rem 5rem -2rem ${theme.palette.neutral.lightGray}`,
 
-    "& .MuiCardHeader-title": {
-      color: theme.palette.primary.main,
-      fontSize: theme.typography.h4,
-      fontWeight: "bolder",
-    },
+  "& .MuiCardHeader-title": {
+    color: theme.palette.primary.main,
+    fontSize: theme.typography.h4,
+    fontWeight: "bolder",
+  },
 
-    "& .MuiCardHeader-subheader": {
-      pt: 1.5,
-      color: "neutral.coolGray",
-    },
-  }) as const;
+  "& .MuiCardHeader-subheader": {
+    pt: 1.5,
+    color: "neutral.coolGray",
+  },
+});
 
 export default function CustomCard({
   title,

@@ -64,7 +64,7 @@ export default function Component() {
         </Stack>
       </Container>
       <Stack direction="row" p={1.5} justifyContent="space-between">
-        <Typography color="gray">Total (per year)</Typography>
+        <Typography color="neutral.coolGray">Total (per year)</Typography>
         <Typography fontWeight={"bold"} color="secondary" variant="h6">
           {`+$${totalFee}/${plan.billingPeriod}`}
         </Typography>

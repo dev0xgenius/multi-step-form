@@ -18,27 +18,36 @@ export default function Header() {
     <AppBar
       position="relative"
       component="header"
-      sx={{
+      sx={(theme) => ({
         p: 0,
         m: 0,
+        flexShrink: 1,
         height: "auto",
         bgcolor: "secondary.main",
         boxShadow: 0,
-      }}
+      })}
     >
       <Box
         component="span"
-        sx={{ height: "100%", "& img": { display: "block" } }}
+        sx={{
+          display: "block",
+          "& > img": {
+            maxWidth: "100%",
+            height: "auto",
+            display: "block",
+          },
+        }}
       >
-        <img src="/images/bg-sidebar-mobile.svg" width="100%" height="auto" />
+        <img src="/images/bg-sidebar-mobile.svg" width="100%" />
       </Box>
       <Stack
         direction="row"
         spacing={2.4}
+        width="100%"
         sx={{
           p: 0,
           position: "absolute",
-          top: 30,
+          top: "18%",
           left: 0,
           right: 0,
           justifyContent: "center",
