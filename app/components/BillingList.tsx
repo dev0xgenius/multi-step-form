@@ -42,7 +42,6 @@ export default function BillingList({ billings, imgs }: BillingListProps) {
           <BillingCard key={index} src={imgs[index]} {...billingInfo} />
         ))}
       </RadioGroup>
-      {/* <input type="hidden" name="plan" value={JSON.stringify(currentBilling)} /> */}
     </FormControl>
   );
 }

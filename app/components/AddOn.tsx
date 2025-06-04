@@ -36,7 +36,7 @@ export default function AddOn(props: AddOnProps) {
     borderRadius: 1,
     border: isChecked ? 2 : 1,
     bgcolor: (isChecked && "neutral.alabaster") || undefined,
-    borderColor: (isChecked && "secondary.main") || "neutral.lightGray",
+    borderColor: (isChecked && "secondary.dark") || "neutral.lightGray",
 
     "&:hover": { bgcolor: "neutral.alabaster" },
     "& .MuiTypography-root": { width: "100%" },
@@ -57,7 +57,7 @@ export default function AddOn(props: AddOnProps) {
     "& .MuiTypography-root": {
       width: "100%",
       fontWeight: "normal",
-      color: "grey",
+      color: "neutral.coolGray",
     },
     "& .MuiCheckbox-root": { display: "none" },
     "& .desc": { display: "none" },
@@ -67,6 +67,7 @@ export default function AddOn(props: AddOnProps) {
     <FormControlLabel
       name="add-on"
       value={inputValue}
+      disabled={props.readOnly}
       sx={props.readOnly ? stylingReadOnly : stylingControlled}
       label={
         <Stack direction="row">
@@ -74,16 +75,22 @@ export default function AddOn(props: AddOnProps) {
             <Typography fontWeight="500" color="primary">
               {capitalize(props.caption.replace("-", " "))}
             </Typography>
-            <Typography variant="body2" color="grey" className="desc">
+            <Typography
+              variant="body2"
+              color="neutral.coolGray"
+              className="desc"
+            >
               {props.description}
             </Typography>
           </Box>
           <Box
             sx={{
               m: "auto",
-              mr: 0,
+              mr: 0.75,
               alignSelf: "center",
-              color: "grey",
+              color:
+                (props.readOnly && "primary.main") ||
+                (isChecked ? "secondary.dark" : "neutral.coolGray"),
               typography: "body2",
             }}
           >

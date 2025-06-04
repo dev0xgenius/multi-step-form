@@ -50,10 +50,10 @@ export default function Page() {
   return (
     <CustomCard
       title="Personal Info"
-      description="Please fill in your name, email address and phone number"
+      description="Please provide your name, email address and phone number"
     >
       <form id="currentForm" onSubmit={handleSubmit(handleSubmitData)}>
-        <Stack direction="column" spacing={2}>
+        <Stack direction="column" spacing={0}>
           <Controller
             name={"name"}
             control={control}

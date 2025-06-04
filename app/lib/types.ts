@@ -8,9 +8,14 @@ export interface FormStateAction {
 }
 
 export const ContactFormSchema = z.object({
-  name: z.string().min(2, { message: "minimum 2 characters" }),
+  name: z
+    .string()
+    .min(5, { message: "minimum 5 characters" })
+    .regex(/((\w+)\s(\w+))/, { message: "space out your names" }),
   email: z.string().email(),
-  phone: z.string().regex(/^\d{11}$/),
+  phone: z
+    .string()
+    .regex(/^\d{11}$/, { message: "should be atleast 11 digits" }),
 });
 
 export type ContactForm = z.infer<typeof ContactFormSchema>;

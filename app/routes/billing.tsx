@@ -10,9 +10,9 @@ import BillingList from "~/components/BillingList";
 import { type BillingInfo, type OutletContext } from "~/lib/types";
 
 const billings: BillingInfo[] = [
-  { price: { mo: 1, yr: 12 }, name: "arcade" },
-  { price: { mo: 2, yr: 24 }, name: "pro" },
-  { price: { mo: 3, yr: 36 }, name: "advanced" },
+  { price: { mo: 9, yr: 90 }, name: "arcade" },
+  { price: { mo: 15, yr: 150 }, name: "advanced" },
+  { price: { mo: 12, yr: 120 }, name: "pro" },
 ];
 
 export default function Component({}: Route.ComponentProps) {

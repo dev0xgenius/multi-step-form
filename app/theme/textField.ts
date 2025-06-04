@@ -1,31 +1,39 @@
 export const InputProps = {
-    notched: false,
-    size: "small",
-    sx: {
-        borderRadius: 0.618,
-    }
+  notched: false,
+  color: "primary",
+  size: "small",
+  sx: { borderRadius: 0.35 },
 } as const;
 
-export const InputLabelProps = {};
+export const InputLabelProps = {
+  size: "small",
+  shrink: true,
+  disableAnimation: true,
+  sx: {
+    position: "static",
+    color: "primary.main",
+    transform: "none",
+  },
+};
 
 export const HelperTextProps = {
-    sx: { position: "absolute", right: 0 }
+  sx: { position: "absolute", right: 0 },
 } as const;
 
 export const TextFieldDefaultProps = {
-    margin: "dense",
-    slotProps: {
-        inputLabel: {
-            shrink: true,
-            disableAnimation: true,
-            sx: {
-                position: "static",
-                transform: "none",
-                color: "primary.main"
-            }
+  margin: "dense",
+  slotProps: {
+    htmlInput: {
+      sx: {
+        "&::placeholder": {
+          opacity: "1",
+          color: "neutral.coolGray",
+          fontWeight: "500",
         },
-        input: { ...InputProps },
-        formHelperText: { ...HelperTextProps }
-    }
+      },
+    },
+    inputLabel: { ...InputLabelProps },
+    input: { ...InputProps },
+    formHelperText: { ...HelperTextProps },
+  },
 } as const;
-

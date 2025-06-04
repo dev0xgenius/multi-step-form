@@ -20,14 +20,14 @@ export interface BillingCardProps extends BillingInfo {
 }
 
 const mediaStyling = {
-  width: 50,
+  width: 40,
   display: "flex",
   alignItems: "center",
 } as const;
 
 const stylesOnSelected = {
   border: 2,
-  borderColor: "secondary.main",
+  borderColor: "secondary.dark",
   bgcolor: "neutral.alabaster",
 } as const;
 
@@ -59,7 +59,7 @@ export function BillingCardLabel(
             <Typography fontWeight="500" variant="h6" color="primary">
               {title}
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="body2" color="neutral.coolGray">
               {priceTag}
             </Typography>
             {props.billingPeriod == "yr" ? (

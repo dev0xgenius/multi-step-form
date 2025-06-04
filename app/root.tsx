@@ -38,7 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider theme={theme}>
           <Stack minHeight="100dvh" bgcolor="neutral.magnolia">
             <Header />
-            <Box component="main" p={2}>
+            <Box component="main" p={2} zIndex={1}>
               {children}
             </Box>
             <Footer />
@@ -64,8 +64,16 @@ export default function App() {
       billingPeriod: "mo",
     },
     extras: {
-      "online-service": false,
-      "larger-storage": false,
+      "online-service": {
+        name: "online-service",
+        description: "Access to multiplayer games",
+        price: { mo: 1, yr: 10 },
+      },
+      "larger-storage": {
+        name: "larger-storage",
+        description: "Extra 1TB of cloud save",
+        price: { mo: 2, yr: 20 },
+      },
       "customizable-profile": false,
     },
   };

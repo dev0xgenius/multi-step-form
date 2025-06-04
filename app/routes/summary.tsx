@@ -26,6 +26,12 @@ export default function Component() {
   const billingPeriodText = plan.billingPeriod == "mo" ? "Monthly" : "Yearly";
   const billing = capitalize(`${plan.name} (${billingPeriodText})`);
   const validExtras = Object.values(extras).filter((value) => !!value);
+  let totalFee = 0;
+
+  validExtras.forEach((validExtra) => {
+    totalFee += validExtra.price[plan.billingPeriod];
+  });
+  totalFee += plan.price[plan.billingPeriod];
 
   return (
     <CustomCard
@@ -60,7 +66,7 @@ export default function Component() {
       <Stack direction="row" p={1.5} justifyContent="space-between">
         <Typography color="gray">Total (per year)</Typography>
         <Typography fontWeight={"bold"} color="secondary" variant="h6">
-          {`+$12/${plan.billingPeriod}`}
+          {`+$${totalFee}/${plan.billingPeriod}`}
         </Typography>
       </Stack>
     </CustomCard>

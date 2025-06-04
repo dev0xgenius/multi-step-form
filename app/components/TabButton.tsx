@@ -13,39 +13,43 @@ export default function TabButton(props: TabButtonProps) {
 
   return (
     <NavLink to={props.path || "/"} style={{ textDecoration: "none" }}>
-      <Stack
-        spacing={theme.spacing(1)}
-        direction="row"
-        sx={{ width: "max-content", alignItems: "center" }}
-      >
-        <Button
-          variant="outlined"
-          sx={{
-            p: "0rem",
-            minWidth: "2.8rem",
-            width: "2.8rem",
-            height: "2.8rem",
-            color: "custom.lightBlue.main",
-            borderColor: "custom.pastelBlue.main",
-            borderRadius: "200px",
-          }}
-        >
-          {props.tabNo}
-        </Button>
+      {({ isActive }) => (
         <Stack
-          sx={{
-            display: "none",
-            [theme.breakpoints.up("md")]: {
-              display: "flex",
-            },
-          }}
+          spacing={theme.spacing(1)}
+          direction="row"
+          sx={{ width: "max-content", alignItems: "center" }}
         >
-          <Typography variant="caption">
-            {props.caption?.toUpperCase()}
-          </Typography>
-          <Typography variant="body2">{props.desc?.toUpperCase()}</Typography>
+          <Button
+            variant="outlined"
+            sx={{
+              p: "0rem",
+              minWidth: "2.5rem",
+              width: "2.5rem",
+              height: "2.5rem",
+              color: isActive ? "primary.main" : "neutral.white",
+              borderColor: "neutral.white",
+              bgcolor: isActive ? "custom.lightBlue.main" : undefined,
+              borderRadius: "200px",
+              border: isActive ? "none" : undefined,
+            }}
+          >
+            {props.tabNo}
+          </Button>
+          <Stack
+            sx={{
+              display: "none",
+              [theme.breakpoints.up("md")]: {
+                display: "flex",
+              },
+            }}
+          >
+            <Typography variant="caption">
+              {props.caption?.toUpperCase()}
+            </Typography>
+            <Typography variant="body2">{props.desc?.toUpperCase()}</Typography>
+          </Stack>
         </Stack>
-      </Stack>
+      )}
     </NavLink>
   );
 }

@@ -42,9 +42,13 @@ export default function SwitchSelect(props: SwitchSelectProps) {
         my: 4,
         mb: 0,
         p: 2,
+
+        "& .MuiTypography-root": { fontWeight: 500 },
       })}
     >
-      <Typography>{props.optionLabels[0]}</Typography>
+      <Typography color={props.checked ? "primary.main" : "neutral.coolGray"}>
+        {props.optionLabels[0]}
+      </Typography>
       <FormControlLabel
         sx={{ m: 0 }}
         label={null}
@@ -56,7 +60,9 @@ export default function SwitchSelect(props: SwitchSelectProps) {
           />
         }
       />
-      <Typography>{props.optionLabels[1]}</Typography>
+      <Typography color={props.checked ? "neutral.coolGray" : "primary.main"}>
+        {props.optionLabels[1]}
+      </Typography>
       <input
         type="hidden"
         name={props.name}

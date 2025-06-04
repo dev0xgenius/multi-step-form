@@ -9,7 +9,7 @@ export interface CustomCardProps {
 
 const styling = (theme: Theme) =>
   ({
-    mt: -14,
+    mt: "-28%",
     p: 1.5,
     px: 0.75,
     boxShadow: `0rem 1rem 5rem -2rem ${theme.palette.neutral.lightGray}`,
@@ -19,9 +19,10 @@ const styling = (theme: Theme) =>
       fontSize: theme.typography.h4,
       fontWeight: "bolder",
     },
+
     "& .MuiCardHeader-subheader": {
-      pt: 0.5,
-      color: "gray",
+      pt: 1.5,
+      color: "neutral.coolGray",
     },
   }) as const;
 
@@ -32,11 +33,7 @@ export default function CustomCard({
 }: CustomCardProps) {
   return (
     <Card sx={styling}>
-      <CardHeader
-        title={title}
-        subheader={description}
-        // TODO: Pad subheading text to the right or give max width
-      />
+      <CardHeader title={title} subheader={description} sx={{ pb: 0 }} />
       <CardContent>{children}</CardContent>
     </Card>
   );

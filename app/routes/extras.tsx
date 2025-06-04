@@ -11,17 +11,17 @@ export async function loader() {
     {
       name: "online-service",
       description: "Access to multiplayer games",
-      price: { mo: 1, yr: 4 },
+      price: { mo: 1, yr: 10 },
     },
     {
       name: "larger-storage",
       description: "Extra 1TB of cloud save",
-      price: { mo: 2, yr: 8 },
+      price: { mo: 2, yr: 20 },
     },
     {
       name: "customizable-profile",
       description: "Custom theme on your profile",
-      price: { mo: 3, yr: 12 },
+      price: { mo: 3, yr: 30 },
     },
   ];
 
