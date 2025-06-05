@@ -23,6 +23,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import type { AppFormState } from "./lib/types";
 import { reducer } from "./lib/utils";
+import { GlobalStyles } from "@mui/material";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -36,9 +37,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <CssBaseline />
         <ThemeProvider theme={theme}>
-          <Stack minHeight="100dvh" maxWidth="100%" bgcolor="neutral.magnolia">
+          <Stack
+            maxWidth="100%"
+            flexGrow={1}
+            sx={{
+              maxHeight: {md: "800px"},
+              flexDirection: { md: "row" },
+              boxShadow: `0rem 1rem 5rem -2rem ${theme.palette.neutral.lightGray}`,
+              borderRadius: { md: 1 },
+              overflow: "hidden",
+              p: { md: 0.5 },
+            }}
+            bgcolor={{ xs: "neutral.magnolia", md: "neutral.white" }}
+          >
             <Header />
-            <Stack flexGrow={1}>
+            <Stack flexGrow={1} width={{ xs: "100%", md: "70%" }}>
               <Box component="main" sx={{ p: 2, zIndex: 1 }}>
                 {children}
               </Box>
@@ -54,6 +67,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const globalStyles = (
+    <GlobalStyles
+      styles={(theme) => ({
+        body: {
+          minHeight: "100dvh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          // "*": { border: "1px solid red" },
+
+          [`${theme.breakpoints.up("md")}`]: {
+            padding: theme.spacing(1),
+            backgroundColor: theme.palette.neutral.magnolia,
+            border: "1px solid red",
+          },
+        },
+      })}
+    />
+  );
+
   const initialState: AppFormState = {
     contact: {
       name: "",
@@ -81,7 +114,12 @@ export default function App() {
   };
 
   const [formState, dispatch] = useReducer(reducer, initialState);
-  return <Outlet context={{ formState, dispatch }} />;
+  return (
+    <>
+      {globalStyles}
+      <Outlet context={{ formState, dispatch }} />
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

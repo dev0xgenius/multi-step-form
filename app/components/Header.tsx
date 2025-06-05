@@ -1,60 +1,83 @@
-import { AppBar, Box, Stack } from "@mui/material";
-import TabButton from "./TabButton";
+import { AppBar, Box, Container, Stack, useMediaQuery } from "@mui/material";
+import TabButton, { type TabButtonProps } from "./TabButton";
 
 export interface TabButtonsProps {
-  tabs: string[];
+  tabs: TabButtonProps[];
 }
 
 export function TabButtons({ tabs }: TabButtonsProps) {
   const tabButtons = tabs.map((tab, index) => (
-    <TabButton tabNo={index + 1} path={tab} key={index} />
+    <TabButton {...tab} key={index} tabNo={index + 1} />
   ));
 
-  return tabButtons;
+  const stackProps = {
+    direction: { xs: "row", md: "column" },
+    spacing: { xs: 2.4, md: 4 },
+    sx: {
+      p: 0,
+      m: "0 auto",
+      position: { xs: "absolute", md: "static" },
+      top: "18%",
+      left: 0,
+      right: 0,
+      justifyContent: "center",
+    },
+  } as const;
+
+  return <Stack {...stackProps}>{tabButtons}</Stack>;
 }
 
 export default function Header() {
+  const tabs = [
+    { path: "/", caption: "step 1", desc: "your info" },
+    { path: "/billing", caption: "step 2", desc: "select plan" },
+    { path: "/extras", caption: "step 3", desc: "add-ons" },
+    { path: "/summary", caption: "step 4", desc: "summary" },
+  ];
+
+  const matchMedia = useMediaQuery("(min-width: 768px)");
   return (
     <AppBar
       position="relative"
       component="header"
       sx={(theme) => ({
+        width: { md: "30%" },
         p: 0,
         m: 0,
         flexShrink: 1,
         height: "auto",
         bgcolor: "secondary.main",
+        borderRadius: 1,
         boxShadow: 0,
       })}
     >
       <Box
         component="span"
-        sx={{
+        sx={(theme) => ({
           display: "block",
+          [`${theme.breakpoints.up("md")}`]: {
+            position: "absolute",
+            bottom: 0,
+          },
           "& > img": {
             maxWidth: "100%",
             height: "auto",
             display: "block",
           },
-        }}
+        })}
       >
-        <img src="/images/bg-sidebar-mobile.svg" width="100%" />
+        <img
+          src={
+            matchMedia
+              ? "/images/bg-sidebar-desktop.svg"
+              : "/images/bg-sidebar-mobile.svg"
+          }
+          width="100%"
+        />
       </Box>
-      <Stack
-        direction="row"
-        spacing={2.4}
-        width="100%"
-        sx={{
-          p: 0,
-          position: "absolute",
-          top: "18%",
-          left: 0,
-          right: 0,
-          justifyContent: "center",
-        }}
-      >
-        <TabButtons tabs={["/", "/billing", "/extras", "/summary"]} />
-      </Stack>
+      <Container disableGutters sx={{ mt: { md: 4 }, p: { md: 2 }, zIndex: 1 }}>
+        <TabButtons tabs={tabs} />
+      </Container>
     </AppBar>
   );
 }

@@ -1,52 +1,44 @@
-import { Button, Stack, Typography, useTheme } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { NavLink } from "react-router";
 
 export interface TabButtonProps {
-  tabNo: number;
+  tabNo?: number;
   desc?: string;
   caption?: string;
   path?: string;
 }
 
 export default function TabButton(props: TabButtonProps) {
-  const theme = useTheme();
+  const btnStyling = (isActive: boolean) => ({
+    minWidth: "2.5rem",
+    width: "2.5rem",
+    p: "0rem",
+    height: "2.5rem",
+    color: isActive ? "primary.main" : "neutral.white",
+    borderColor: "neutral.white",
+    bgcolor: isActive ? "custom.lightBlue.main" : undefined,
+    borderRadius: "200px",
+    border: isActive ? "none" : undefined,
+  });
 
   return (
     <NavLink to={props.path || "/"} style={{ textDecoration: "none" }}>
       {({ isActive }) => (
         <Stack
-          spacing={theme.spacing(1)}
+          spacing={2}
           direction="row"
           sx={{ width: "max-content", alignItems: "center" }}
         >
-          <Button
-            variant="outlined"
-            sx={{
-              p: "0rem",
-              minWidth: "2.5rem",
-              width: "2.5rem",
-              height: "2.5rem",
-              color: isActive ? "primary.main" : "neutral.white",
-              borderColor: "neutral.white",
-              bgcolor: isActive ? "custom.lightBlue.main" : undefined,
-              borderRadius: "200px",
-              border: isActive ? "none" : undefined,
-            }}
-          >
+          <Button variant="outlined" sx={btnStyling(isActive)}>
             {props.tabNo}
           </Button>
-          <Stack
-            sx={{
-              display: "none",
-              [theme.breakpoints.up("md")]: {
-                display: "flex",
-              },
-            }}
-          >
-            <Typography variant="caption">
+          <Stack sx={{ display: { xs: "none", md: "flex" } }} spacing={0}>
+            <Typography color="neutral.coolGray">
               {props.caption?.toUpperCase()}
             </Typography>
-            <Typography variant="body2">{props.desc?.toUpperCase()}</Typography>
+            <Typography color="neutral.white" fontWeight={500}>
+              {props.desc?.toUpperCase()}
+            </Typography>
           </Stack>
         </Stack>
       )}

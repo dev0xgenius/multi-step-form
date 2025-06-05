@@ -5,10 +5,12 @@ import { useLocation, useNavigate } from "react-router";
 export const footerStyles = {
   width: "100%",
   p: 2,
+  px: { md: 4 },
   m: "auto",
   mb: 0,
   justifyContent: "space-between",
   bgcolor: "neutral.white",
+  // border:1,
   zIndex: 1,
 } as const;
 

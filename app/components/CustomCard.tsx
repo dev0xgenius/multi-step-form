@@ -11,10 +11,13 @@ const styling = (theme: Theme) => ({
   maxWidth: theme.breakpoints.values.sm,
   width: "100%",
   m: "0 auto",
-  mt: "-28%",
-  p: 1.5,
+  mt: { xs: "-28%", md: "0" },
+  p: { xs: 1.5, md: 0 },
   px: 0.75,
-  boxShadow: `0rem 1rem 5rem -2rem ${theme.palette.neutral.lightGray}`,
+  boxShadow: {
+    xs: `0rem 1rem 5rem -2rem ${theme.palette.neutral.lightGray}`,
+    md: "none",
+  },
 
   "& .MuiCardHeader-title": {
     color: theme.palette.primary.main,

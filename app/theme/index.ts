@@ -69,9 +69,13 @@ let customTheme = createTheme({
   },
 
   breakpoints: {
-    md: "768px",
-    lg: "992px",
-    xl: "1440px",
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 768,
+      lg: 992,
+      xl: 1440,
+    },
   },
 
   shape: {
