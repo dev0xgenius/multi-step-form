@@ -10,7 +10,6 @@ export const footerStyles = {
   mb: 0,
   justifyContent: "space-between",
   bgcolor: "neutral.white",
-  // border:1,
   zIndex: 1,
 } as const;
 

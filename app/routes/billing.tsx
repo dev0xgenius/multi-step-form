@@ -15,7 +15,7 @@ const billings: BillingInfo[] = [
   { price: { mo: 12, yr: 120 }, name: "pro" },
 ];
 
-export default function Component({}: Route.ComponentProps) {
+export default function BillingPage({}: Route.ComponentProps) {
   const {
     formState: { plan },
     dispatch,

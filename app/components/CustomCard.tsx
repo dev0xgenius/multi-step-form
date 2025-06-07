@@ -8,8 +8,8 @@ export interface CustomCardProps {
 }
 
 const styling = (theme: Theme) => ({
-  maxWidth: theme.breakpoints.values.sm,
   width: "100%",
+  height: "100%",
   m: "0 auto",
   mt: { xs: "-28%", md: "0" },
   p: { xs: 1.5, md: 0 },

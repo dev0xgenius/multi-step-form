@@ -1,8 +1,12 @@
+// import { useMediaQuery } from "@mui/material";
+
 export const InputProps = {
   notched: false,
   color: "primary",
-  size: "small",
-  sx: { borderRadius: 0.35 },
+  // size: "small",
+  sx: {
+    borderRadius: 0.35,
+  },
 } as const;
 
 export const InputLabelProps = {

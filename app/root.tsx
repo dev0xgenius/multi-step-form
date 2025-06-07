@@ -38,21 +38,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <CssBaseline />
         <ThemeProvider theme={theme}>
           <Stack
-            maxWidth="100%"
-            flexGrow={1}
             sx={{
-              maxHeight: {md: "800px"},
+              maxWidth: "992px",
               flexDirection: { md: "row" },
+              flexGrow: { xs: 1 },
               boxShadow: `0rem 1rem 5rem -2rem ${theme.palette.neutral.lightGray}`,
               borderRadius: { md: 1 },
-              overflow: "hidden",
               p: { md: 0.5 },
             }}
             bgcolor={{ xs: "neutral.magnolia", md: "neutral.white" }}
           >
             <Header />
             <Stack flexGrow={1} width={{ xs: "100%", md: "70%" }}>
-              <Box component="main" sx={{ p: 2, zIndex: 1 }}>
+              <Box
+                component="main"
+                sx={{
+                  p: 2,
+                  zIndex: 1,
+                  width: "100%",
+                  height: { md: "100%" },
+                }}
+              >
                 {children}
               </Box>
               <Footer />
@@ -75,12 +81,10 @@ export default function App() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          // "*": { border: "1px solid red" },
 
           [`${theme.breakpoints.up("md")}`]: {
             padding: theme.spacing(1),
             backgroundColor: theme.palette.neutral.magnolia,
-            border: "1px solid red",
           },
         },
       })}

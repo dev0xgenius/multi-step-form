@@ -51,7 +51,11 @@ export function BillingCardLabel(
       }}
     >
       <CardContent sx={{ position: "relative" }}>
-        <Stack direction="row" alignItems="start" spacing={2}>
+        <Stack
+          direction={{ xs: "row", md: "column" }}
+          alignItems="start"
+          spacing={{xs: 2, md: 4}}
+        >
           <CardMedia sx={mediaStyling}>
             <img src={props.src} width="100%" height="auto" />
           </CardMedia>
@@ -77,6 +81,7 @@ export function BillingCardLabel(
 }
 
 const labelStyle = {
+  width: "100%",
   p: 0,
   m: 0,
   "& > span": {

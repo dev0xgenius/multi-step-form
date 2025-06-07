@@ -11,7 +11,7 @@ export interface AddOnsProps {
 export default function AddOns({ addOns, readOnly }: AddOnsProps) {
   return addOns && addOns.length != 0 ? (
     <FormGroup>
-      <Stack spacing={1}>
+      <Stack spacing={{xs: 1, md: 2}}>
         {addOns.map((addOn, index) => (
           <AddOn
             caption={addOn.name}

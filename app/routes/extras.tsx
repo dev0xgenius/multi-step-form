@@ -28,7 +28,7 @@ export async function loader() {
   return { data };
 }
 
-export default function Component({ loaderData }: Route.ComponentProps) {
+export default function AddOnsPage({ loaderData }: Route.ComponentProps) {
   const { dispatch } = useOutletContext<OutletContext>();
   const navigate = useNavigate();
   let { data } = loaderData;

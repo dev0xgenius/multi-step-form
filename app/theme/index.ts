@@ -100,9 +100,7 @@ customTheme = createTheme(customTheme, {
         spacing: 1,
       },
     },
-    MuiTextField: {
-      defaultProps: { ...TextFieldDefaultProps },
-    },
+    MuiTextField: { defaultProps: { ...TextFieldDefaultProps } },
     MuiButton: {
       defaultProps: { size: "large" },
       styleOverrides: {
@@ -131,5 +129,5 @@ customTheme = createTheme(customTheme, {
   },
 });
 
-customTheme = responsiveFontSizes(customTheme);
+customTheme = responsiveFontSizes(customTheme, { factor: 1.5});
 export default customTheme;

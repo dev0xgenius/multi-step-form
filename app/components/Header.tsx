@@ -14,6 +14,7 @@ export function TabButtons({ tabs }: TabButtonsProps) {
     direction: { xs: "row", md: "column" },
     spacing: { xs: 2.4, md: 4 },
     sx: {
+      maxWidth: "78%",
       p: 0,
       m: "0 auto",
       position: { xs: "absolute", md: "static" },
@@ -49,20 +50,22 @@ export default function Header() {
         bgcolor: "secondary.main",
         borderRadius: 1,
         boxShadow: 0,
+        overflow: "hidden",
       })}
     >
       <Box
         component="span"
         sx={(theme) => ({
           display: "block",
+          width: "100%",
           [`${theme.breakpoints.up("md")}`]: {
             position: "absolute",
             bottom: 0,
           },
           "& > img": {
+            display: "block",
             maxWidth: "100%",
             height: "auto",
-            display: "block",
           },
         })}
       >
@@ -75,7 +78,13 @@ export default function Header() {
           width="100%"
         />
       </Box>
-      <Container disableGutters sx={{ mt: { md: 4 }, p: { md: 2 }, zIndex: 1 }}>
+      <Container
+        disableGutters
+        sx={{
+          mt: { md: 4 },
+          zIndex: 1,
+        }}
+      >
         <TabButtons tabs={tabs} />
       </Container>
     </AppBar>

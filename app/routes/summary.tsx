@@ -9,16 +9,16 @@ import {
 import { Link, useOutletContext } from "react-router";
 import AddOns from "~/components/AddOns";
 import CustomCard from "~/components/CustomCard";
-import type { AddOnInfo, OutletContext } from "~/lib/types";
+import type { OutletContext } from "~/lib/types";
 
 const styling = {
-  bgcolor: "neutral.alabaster",
+  bgcolor: "neutral.magnolia",
   py: 1.5,
   borderRadius: 1,
   mb: 2,
 } as const;
 
-export default function Component() {
+export default function SummaryPage() {
   const {
     formState: { plan, extras },
   } = useOutletContext<OutletContext>();
@@ -65,7 +65,7 @@ export default function Component() {
       </Container>
       <Stack direction="row" p={1.5} justifyContent="space-between">
         <Typography color="neutral.coolGray">Total (per year)</Typography>
-        <Typography fontWeight={"bold"} color="secondary" variant="h6">
+        <Typography fontWeight="bold" color="secondary" variant="h6">
           {`+$${totalFee}/${plan.billingPeriod}`}
         </Typography>
       </Stack>

@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Stack, TextField } from "@mui/material";
+import { Stack, TextField, useMediaQuery } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 
@@ -12,7 +12,7 @@ import {
 
 import CustomCard from "~/components/CustomCard";
 
-export default function Page() {
+export default function ContactPage() {
   const { formState, dispatch } = useOutletContext<OutletContext>();
   const { contact } = formState;
   const {
@@ -30,6 +30,7 @@ export default function Page() {
 
   const navigate = useNavigate();
   const blocker = useBlocker(!isValid);
+  const matchMedia = useMediaQuery(`(min-width: 768px)`);
 
   const handleSubmitData = useCallback<SubmitHandler<ContactForm>>((data) => {
     dispatch({ type: "UPDATE_CONTACT", data });
@@ -53,7 +54,7 @@ export default function Page() {
       description="Please provide your name, email address and phone number"
     >
       <form id="currentForm" onSubmit={handleSubmit(handleSubmitData)}>
-        <Stack direction="column" spacing={0}>
+        <Stack direction="column" spacing={{ xs: 0 }}>
           <Controller
             name={"name"}
             control={control}
@@ -63,6 +64,7 @@ export default function Page() {
                 helperText={errors.name?.message}
                 label="Name"
                 placeholder="e.g Stephen King"
+                size={matchMedia ? "medium" : "small"}
                 {...field}
               />
             )}
@@ -77,6 +79,7 @@ export default function Page() {
                 label="Email"
                 helperText={errors.email?.message}
                 placeholder="e.g stephenking123@gmail.com"
+                size={matchMedia ? "medium" : "small"}
                 {...field}
               />
             )}
@@ -91,6 +94,7 @@ export default function Page() {
                 error={!!errors.phone}
                 helperText={errors.phone?.message}
                 placeholder="e.g 234 6766636673"
+                size={matchMedia ? "medium" : "small"}
                 {...field}
               />
             )}

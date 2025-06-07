@@ -33,7 +33,11 @@ export default function BillingList({ billings, imgs }: BillingListProps) {
   return (
     <FormControl sx={{ width: "100%" }}>
       <RadioGroup
-        sx={{ gap: 2 }}
+        sx={{
+          flexDirection: { md: "row" },
+          flexWrap: "nowrap",
+          gap: 2,
+        }}
         value={JSON.stringify(currentBilling)}
         name="plan"
         onChange={handleChange}
