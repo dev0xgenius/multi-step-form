@@ -1,10 +1,9 @@
-// import { useMediaQuery } from "@mui/material";
-
 export const InputProps = {
   notched: false,
   color: "primary",
-  // size: "small",
+  size: "small",
   sx: {
+    p: .5,
     borderRadius: 0.35,
   },
 } as const;

@@ -39,7 +39,7 @@ export default function CustomCard({
   return (
     <Card sx={styling}>
       <CardHeader title={title} subheader={description} sx={{ pb: 0 }} />
-      <CardContent>{children}</CardContent>
+      <CardContent sx={{ py: { md: 4 } }}>{children}</CardContent>
     </Card>
   );
 }

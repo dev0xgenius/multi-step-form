@@ -46,7 +46,7 @@ export default function SwitchSelect(props: SwitchSelectProps) {
         "& .MuiTypography-root": { fontWeight: 500 },
       })}
     >
-      <Typography color={props.checked ? "primary.main" : "neutral.coolGray"}>
+      <Typography color={props.checked ? "neutral.coolGray" : "primary.main"}>
         {props.optionLabels[0]}
       </Typography>
       <FormControlLabel
@@ -60,7 +60,7 @@ export default function SwitchSelect(props: SwitchSelectProps) {
           />
         }
       />
-      <Typography color={props.checked ? "neutral.coolGray" : "primary.main"}>
+      <Typography color={props.checked ? "primary.main" : "neutral.coolGray"}>
         {props.optionLabels[1]}
       </Typography>
       <input

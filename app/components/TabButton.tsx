@@ -10,10 +10,9 @@ export interface TabButtonProps {
 
 export default function TabButton(props: TabButtonProps) {
   const btnStyling = (isActive: boolean) => ({
-    minWidth: "2.5rem",
-    width: "2.5rem",
+    minWidth: "2.2rem",
     p: "0rem",
-    height: "2.5rem",
+    height: "2.2rem",
     color: isActive ? "primary.main" : "neutral.white",
     borderColor: "neutral.white",
     bgcolor: isActive ? "custom.lightBlue.main" : undefined,
@@ -33,10 +32,10 @@ export default function TabButton(props: TabButtonProps) {
             {props.tabNo}
           </Button>
           <Stack sx={{ display: { xs: "none", md: "flex" } }} spacing={0}>
-            <Typography color="neutral.coolGray">
+            <Typography color="neutral.coolGray" variant="caption">
               {props.caption?.toUpperCase()}
             </Typography>
-            <Typography color="neutral.white" fontWeight={500}>
+            <Typography color="neutral.white" fontWeight="bold" variant="body2">
               {props.desc?.toUpperCase()}
             </Typography>
           </Stack>

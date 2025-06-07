@@ -12,7 +12,7 @@ export function TabButtons({ tabs }: TabButtonsProps) {
 
   const stackProps = {
     direction: { xs: "row", md: "column" },
-    spacing: { xs: 2.4, md: 4 },
+    spacing: 3,
     sx: {
       maxWidth: "78%",
       p: 0,
@@ -41,14 +41,14 @@ export default function Header() {
     <AppBar
       position="relative"
       component="header"
-      sx={(theme) => ({
+      sx={() => ({
         width: { md: "30%" },
         p: 0,
         m: 0,
         flexShrink: 1,
         height: "auto",
         bgcolor: "secondary.main",
-        borderRadius: 1,
+        borderRadius: { xs: 0, md: 1 },
         boxShadow: 0,
         overflow: "hidden",
       })}

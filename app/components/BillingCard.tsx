@@ -53,8 +53,16 @@ export function BillingCardLabel(
       <CardContent sx={{ position: "relative" }}>
         <Stack
           direction={{ xs: "row", md: "column" }}
-          alignItems="start"
-          spacing={{xs: 2, md: 4}}
+          spacing={{ xs: 2, md: 6 }}
+          sx={(theme) => ({
+            width: "max-content",
+            height: "100%",
+            alignItems: "start",
+            p: 0,
+            [`${theme.breakpoints.up("md")}`]: {
+              ...{ my: -1, mt: 1 },
+            },
+          })}
         >
           <CardMedia sx={mediaStyling}>
             <img src={props.src} width="100%" height="auto" />

@@ -30,7 +30,6 @@ export default function ContactPage() {
 
   const navigate = useNavigate();
   const blocker = useBlocker(!isValid);
-  const matchMedia = useMediaQuery(`(min-width: 768px)`);
 
   const handleSubmitData = useCallback<SubmitHandler<ContactForm>>((data) => {
     dispatch({ type: "UPDATE_CONTACT", data });
@@ -64,7 +63,6 @@ export default function ContactPage() {
                 helperText={errors.name?.message}
                 label="Name"
                 placeholder="e.g Stephen King"
-                size={matchMedia ? "medium" : "small"}
                 {...field}
               />
             )}
@@ -79,7 +77,6 @@ export default function ContactPage() {
                 label="Email"
                 helperText={errors.email?.message}
                 placeholder="e.g stephenking123@gmail.com"
-                size={matchMedia ? "medium" : "small"}
                 {...field}
               />
             )}
@@ -94,7 +91,6 @@ export default function ContactPage() {
                 error={!!errors.phone}
                 helperText={errors.phone?.message}
                 placeholder="e.g 234 6766636673"
-                size={matchMedia ? "medium" : "small"}
                 {...field}
               />
             )}
