@@ -36,6 +36,15 @@ export default function Footer() {
         variant="contained"
         form="currentForm"
         id="submitBtn"
+        sx={(theme) => ({
+          [`${theme.breakpoints.up("md")}`]: {
+            fontSize: 17,
+            borderRadius: 1,
+            px: 3,
+            py: 1.25,
+            color: "neutral.alabaster",
+          },
+        })}
       >
         {location?.pathname == "/summary" ? "Confirm" : "Next Step"}
       </Button>

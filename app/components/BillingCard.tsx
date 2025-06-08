@@ -26,7 +26,7 @@ const mediaStyling = {
 } as const;
 
 const stylesOnSelected = {
-  border: 2,
+  // border: 2,
   borderColor: "secondary.dark",
   bgcolor: "neutral.alabaster",
 } as const;
@@ -53,7 +53,7 @@ export function BillingCardLabel(
       <CardContent sx={{ position: "relative" }}>
         <Stack
           direction={{ xs: "row", md: "column" }}
-          spacing={{ xs: 2, md: 6 }}
+          spacing={{ xs: 2, md: 4 }}
           sx={(theme) => ({
             width: "max-content",
             height: "100%",

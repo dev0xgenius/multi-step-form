@@ -39,7 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider theme={theme}>
           <Stack
             sx={{
-              maxWidth: "900px",
+              maxWidth: "992px",
               width: "100%",
               flexDirection: { md: "row" },
               flexGrow: { xs: 1, md: 0 },
@@ -54,9 +54,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Stack
               flexGrow={1}
               width={{ xs: "100%", md: "70%" }}
-              gap={10}
+              gap={4}
               m="0 auto"
-              maxWidth="540px"
+              maxWidth="520px"
             >
               <Box
                 component="main"

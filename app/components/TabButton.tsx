@@ -26,13 +26,17 @@ export default function TabButton(props: TabButtonProps) {
         <Stack
           spacing={2}
           direction="row"
-          sx={{ width: "max-content", alignItems: "center" }}
+          sx={{
+            width: "max-content",
+            alignItems: "center",
+            letterSpacing: 1.5,
+          }}
         >
           <Button variant="outlined" sx={btnStyling(isActive)}>
             {props.tabNo}
           </Button>
           <Stack sx={{ display: { xs: "none", md: "flex" } }} spacing={0}>
-            <Typography color="neutral.coolGray" variant="caption">
+            <Typography color="custom.pastelBlue.main" variant="caption">
               {props.caption?.toUpperCase()}
             </Typography>
             <Typography color="neutral.white" fontWeight="bold" variant="body2">

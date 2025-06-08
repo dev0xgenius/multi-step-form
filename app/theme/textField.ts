@@ -3,8 +3,8 @@ export const InputProps = {
   color: "primary",
   size: "small",
   sx: {
-    p: .5,
-    borderRadius: 0.35,
+    p: 0.5,
+    borderRadius: { xs: 0.35, md: 0.85 },
   },
 } as const;
 
@@ -14,8 +14,8 @@ export const InputLabelProps = {
   disableAnimation: true,
   sx: {
     position: "static",
-    color: "primary.main",
     transform: "none",
+    color: "primary.main"
   },
 };
 
@@ -26,6 +26,7 @@ export const HelperTextProps = {
 export const TextFieldDefaultProps = {
   margin: "dense",
   slotProps: {
+    root: { sx: { gap: 0.5 } },
     htmlInput: {
       sx: {
         "&::placeholder": {

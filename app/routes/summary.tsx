@@ -12,7 +12,7 @@ import CustomCard from "~/components/CustomCard";
 import type { OutletContext } from "~/lib/types";
 
 const styling = {
-  bgcolor: "neutral.magnolia",
+  bgcolor: "neutral.alabaster",
   py: 1.5,
   borderRadius: 1,
   mb: 2,
