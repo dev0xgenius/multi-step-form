@@ -106,6 +106,7 @@ customTheme = createTheme(customTheme, {
       styleOverrides: {
         root: {
           borderRadius: 4,
+          boxShadow: "none"
         },
       },
     },

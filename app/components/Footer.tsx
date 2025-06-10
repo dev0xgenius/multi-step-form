@@ -50,7 +50,7 @@ export default function Footer() {
             fontSize: 17,
             borderRadius: 1,
             px: 4,
-            py: 1.5,
+            py: 1.25,
             color: "neutral.alabaster",
           },
         })}
