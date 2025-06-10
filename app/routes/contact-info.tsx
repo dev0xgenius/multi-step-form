@@ -25,6 +25,7 @@ export default function ContactPage() {
     mode: "onChange",
     shouldFocusError: true,
     resolver: zodResolver(ContactFormSchema),
+
     defaultValues: { ...contact },
   });
 

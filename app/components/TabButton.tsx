@@ -39,7 +39,7 @@ export default function TabButton(props: TabButtonProps) {
             <Typography color="custom.pastelBlue.main" variant="caption">
               {props.caption?.toUpperCase()}
             </Typography>
-            <Typography color="neutral.white" fontWeight="bold" variant="body2">
+            <Typography color="neutral.white" fontWeight={600} variant="body2">
               {props.desc?.toUpperCase()}
             </Typography>
           </Stack>

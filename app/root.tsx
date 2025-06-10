@@ -23,7 +23,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import type { AppFormState } from "./lib/types";
 import { reducer } from "./lib/utils";
-import { GlobalStyles } from "@mui/material";
+import { GlobalStyles, Input } from "@mui/material";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -54,7 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Stack
               flexGrow={1}
               width={{ xs: "100%", md: "70%" }}
-              gap={4}
+              gap={{ md: 8 }}
               m="0 auto"
               maxWidth="520px"
             >

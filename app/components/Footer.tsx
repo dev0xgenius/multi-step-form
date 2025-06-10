@@ -37,6 +37,7 @@ export default function Footer() {
         form="currentForm"
         id="submitBtn"
         sx={(theme) => ({
+          boxShadow: "none",
           [`${theme.breakpoints.up("md")}`]: {
             fontSize: 17,
             borderRadius: 1,

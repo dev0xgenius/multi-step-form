@@ -3,6 +3,18 @@ export const InputProps = {
   color: "primary",
   size: "small",
   sx: {
+    "&.Mui-error": {
+      "& .MuiOutlinedInput-notchedOutline": {
+        borderColor: "custom.strawberryRed.main",
+      },
+    },
+    "&:hover": {
+      "& .MuiOutlinedInput-notchedOutline": {
+        borderColor: "secondary.dark",
+      },
+    },
+    color: "primary.main",
+    fontWeight: 500,
     p: 0.5,
     borderRadius: { xs: 0.35, md: 0.85 },
   },
@@ -15,12 +27,12 @@ export const InputLabelProps = {
   sx: {
     position: "static",
     transform: "none",
-    color: "primary.main"
+    color: "primary.main",
   },
 };
 
 export const HelperTextProps = {
-  sx: { position: "absolute", right: 0 },
+  sx: { position: "absolute", right: 0, fontWeight: 500, fontSize: 14 },
 } as const;
 
 export const TextFieldDefaultProps = {
