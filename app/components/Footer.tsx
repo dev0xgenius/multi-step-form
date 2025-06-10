@@ -20,12 +20,16 @@ export default function Footer() {
     navigate(-1);
   }, []);
 
+  const isOnLastRoute = location?.pathname == "/summary";
+
   return (
     <Stack direction="row" {...footerStyles}>
       <Button
         sx={{
           visibility: location?.pathname == "/" ? "hidden" : "initial",
           color: "neutral.coolGray",
+          fontSize: { md: 17 },
+          "&:hover": { color: "primary.main" },
         }}
         onClick={goBack}
       >
@@ -36,18 +40,22 @@ export default function Footer() {
         variant="contained"
         form="currentForm"
         id="submitBtn"
+        color={isOnLastRoute ? "secondary" : undefined}
         sx={(theme) => ({
-          boxShadow: "none",
+          "&:hover": {
+            boxShadow: "none",
+            opacity: 0.8,
+          },
           [`${theme.breakpoints.up("md")}`]: {
             fontSize: 17,
             borderRadius: 1,
-            px: 3,
-            py: 1.25,
+            px: 4,
+            py: 1.5,
             color: "neutral.alabaster",
           },
         })}
       >
-        {location?.pathname == "/summary" ? "Confirm" : "Next Step"}
+        {isOnLastRoute ? "Confirm" : "Next Step"}
       </Button>
     </Stack>
   );

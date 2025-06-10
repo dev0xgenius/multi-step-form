@@ -45,7 +45,7 @@ export default function SummaryPage() {
           justifyContent="space-between"
         >
           <Box>
-            <Typography color="primary" fontWeight="bold">
+            <Typography color="primary" fontWeight={500}>
               {billing}
             </Typography>
             <Typography color="primary">
@@ -64,7 +64,9 @@ export default function SummaryPage() {
         </Stack>
       </Container>
       <Stack direction="row" p={1.5} justifyContent="space-between">
-        <Typography color="neutral.coolGray">Total (per year)</Typography>
+        <Typography color="neutral.coolGray">
+          {`Total (per ${plan.billingPeriod == "mo" ? "month" : "year"})`}
+        </Typography>
         <Typography fontWeight="bold" color="secondary" variant="h6">
           {`+$${totalFee}/${plan.billingPeriod}`}
         </Typography>

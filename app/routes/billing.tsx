@@ -73,8 +73,8 @@ export default function BillingPage({}: Route.ComponentProps) {
             billings={billings}
             imgs={[
               "/images/icon-arcade.svg",
-              "/images/icon-pro.svg",
               "/images/icon-advanced.svg",
+              "/images/icon-pro.svg",
             ]}
           />
           <SwitchSelect

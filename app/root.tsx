@@ -54,7 +54,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Stack
               flexGrow={1}
               width={{ xs: "100%", md: "70%" }}
-              gap={{ md: 8 }}
+              gap={{ md: 4, lg: 8 }}
               m="0 auto"
               maxWidth="520px"
             >

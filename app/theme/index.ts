@@ -106,11 +106,6 @@ customTheme = createTheme(customTheme, {
       styleOverrides: {
         root: {
           borderRadius: 4,
-          "&:hover": {
-            boxShadow: "none",
-            backgroundColor: customTheme.palette.primary.main,
-            opacity: 0.8,
-          },
         },
       },
     },
