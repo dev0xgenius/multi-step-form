@@ -11,8 +11,8 @@ export interface TabButtonProps {
 export default function TabButton(props: TabButtonProps) {
   const btnStyling = (isActive: boolean) => ({
     minWidth: "2.2rem",
-    p: "0rem",
     height: "2.2rem",
+    p: "0rem",
     color: isActive ? "primary.main" : "neutral.white",
     borderColor: "neutral.white",
     bgcolor: isActive ? "custom.lightBlue.main" : undefined,

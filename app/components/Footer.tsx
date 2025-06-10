@@ -7,10 +7,11 @@ export const footerStyles = {
   p: 2,
   px: { md: 4 },
   m: "auto",
-  mb: 0,
+  mb: { xs: 0, sm: 2, md: 0 },
   justifyContent: "space-between",
   bgcolor: "neutral.white",
   zIndex: 1,
+  borderRadius: { sm: 1 },
 } as const;
 
 export default function Footer() {
