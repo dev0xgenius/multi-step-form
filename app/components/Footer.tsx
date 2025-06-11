@@ -22,12 +22,17 @@ export default function Footer() {
   }, []);
 
   const isOnLastRoute = location?.pathname == "/summary";
+  const isOnConfirmationRoute = location?.pathname == "/summary/confirmed";
 
   return (
-    <Stack direction="row" {...footerStyles}>
+    <Stack
+      direction="row"
+      {...footerStyles}
+      visibility={isOnConfirmationRoute ? "hidden" : undefined}
+    >
       <Button
         sx={{
-          visibility: location?.pathname == "/" ? "hidden" : "initial",
+          visibility: location?.pathname == "/" ? "hidden" : undefined,
           color: "neutral.coolGray",
           fontSize: { md: 17 },
           "&:hover": { color: "primary.main" },

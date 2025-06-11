@@ -6,7 +6,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Link, useOutletContext } from "react-router";
+import { Link, useNavigate, useOutletContext } from "react-router";
 import AddOns from "~/components/AddOns";
 import CustomCard from "~/components/CustomCard";
 import type { OutletContext } from "~/lib/types";
@@ -25,6 +25,10 @@ export default function SummaryPage() {
 
   const billingPeriodText = plan.billingPeriod == "mo" ? "Monthly" : "Yearly";
   const billing = capitalize(`${plan.name} (${billingPeriodText})`);
+
+  const formId = 234324;
+  const navigate = useNavigate();
+
   const validExtras = Object.values(extras).filter((value) => !!value);
   let totalFee = 0;
 
@@ -38,7 +42,18 @@ export default function SummaryPage() {
       description="Double check everything looks OK before confirming"
       title="Finishing Up"
     >
-      <Container sx={styling}>
+      <Container
+        sx={styling}
+        component={"form"}
+        action="/summary/confirmed"
+        method="get"
+        id="currentForm"
+        onSubmit={(e) => {
+          e.preventDefault();
+          navigate("confirmed?id=123");
+        }}
+      >
+        <input type="hidden" name="id" value={formId} />
         <Stack
           direction="row"
           alignItems={"center"}

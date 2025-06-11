@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -25,6 +25,26 @@ import type { AppFormState } from "./lib/types";
 import { reducer } from "./lib/utils";
 import { GlobalStyles, Input } from "@mui/material";
 
+const globalStyles = (
+  <GlobalStyles
+    styles={(theme) => ({
+      body: {
+        minHeight: "100dvh",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+
+        [`${theme.breakpoints.up("md")}`]: {
+          padding: theme.spacing(1),
+          backgroundColor: theme.palette.neutral.magnolia,
+        },
+      },
+    })}
+  />
+);
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -37,9 +57,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <CssBaseline />
         <ThemeProvider theme={theme}>
+          {globalStyles}
           <Stack
             sx={{
               maxWidth: "960px",
+              minHeight: { md: "619px" },
               width: "100%",
               flexDirection: { md: "row" },
               flexGrow: { xs: 1, md: 0 },
@@ -61,6 +83,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Box
                 component="main"
                 sx={{
+                  display: "flex",
                   p: 2,
                   zIndex: 1,
                   width: "100%",
@@ -81,27 +104,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const globalStyles = (
-    <GlobalStyles
-      styles={(theme) => ({
-        body: {
-          minHeight: "100dvh",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-
-          [`${theme.breakpoints.up("md")}`]: {
-            padding: theme.spacing(1),
-            backgroundColor: theme.palette.neutral.magnolia,
-          },
-        },
-      })}
-    />
-  );
-
-  const initialState: AppFormState = {
+  const initialState: AppFormState & { isFormValid?: boolean } = {
     contact: {
       name: "",
       email: "",
@@ -128,9 +131,9 @@ export default function App() {
   };
 
   const [formState, dispatch] = useReducer(reducer, initialState);
+
   return (
     <>
-      {globalStyles}
       <Outlet context={{ formState, dispatch }} />
     </>
   );
