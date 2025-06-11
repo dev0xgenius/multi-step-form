@@ -1,8 +1,7 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Container, Stack } from "@mui/system";
-import { redirect, useOutletContext } from "react-router";
+import { redirect } from "react-router";
 import type { Route } from "./+types/thankyou";
-import type { OutletContext } from "~/lib/types";
 
 export function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
