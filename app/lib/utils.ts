@@ -1,8 +1,4 @@
-import {
-  ContactFormSchema,
-  type AppFormState,
-  type FormStateAction,
-} from "./types";
+import { type AppFormState, type FormStateAction } from "./types";
 
 export function reducer(state: AppFormState, action: FormStateAction) {
   const { data } = action;
@@ -28,8 +24,6 @@ export function reducer(state: AppFormState, action: FormStateAction) {
         ...state,
         extras: Object.assign({}, state.extras, data),
       };
-      break;
-    case "VALIDATE_FORM":
       break;
   }
 
