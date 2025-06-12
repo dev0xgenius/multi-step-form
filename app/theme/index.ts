@@ -104,7 +104,10 @@ customTheme = createTheme(customTheme, {
     MuiButton: {
       defaultProps: { size: "large" },
       styleOverrides: {
-        root: { borderRadius: 4 },
+        root: {
+          borderRadius: 4,
+          boxShadow: "none"
+        },
       },
     },
   },
@@ -129,5 +132,5 @@ customTheme = createTheme(customTheme, {
   },
 });
 
-customTheme = responsiveFontSizes(customTheme, { factor: 1.5});
+customTheme = responsiveFontSizes(customTheme, { factor: 1.5 });
 export default customTheme;

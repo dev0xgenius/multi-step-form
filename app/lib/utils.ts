@@ -1,4 +1,4 @@
-import type { AppFormState, FormStateAction } from "./types";
+import { type AppFormState, type FormStateAction } from "./types";
 
 export function reducer(state: AppFormState, action: FormStateAction) {
   const { data } = action;

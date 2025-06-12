@@ -34,7 +34,7 @@ export default function AddOn(props: AddOnProps) {
     p: 1,
     py: 2,
     borderRadius: 1,
-    border: isChecked ? 2 : 1,
+    border: 1,
     bgcolor: (isChecked && "neutral.alabaster") || undefined,
     borderColor: (isChecked && "secondary.dark") || "neutral.lightGray",
 
@@ -88,9 +88,7 @@ export default function AddOn(props: AddOnProps) {
               m: "auto",
               mr: 0.75,
               alignSelf: "center",
-              color:
-                (props.readOnly && "primary.main") ||
-                (isChecked ? "secondary.dark" : "neutral.coolGray"),
+              color: (props.readOnly && "primary.main") || "secondary.dark",
               typography: "body2",
             }}
           >

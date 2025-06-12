@@ -12,13 +12,14 @@ export function TabButtons({ tabs }: TabButtonsProps) {
 
   const stackProps = {
     direction: { xs: "row", md: "column" },
-    spacing: 3,
+    spacing: { xs: 2.5, md: 3.5 },
     sx: {
       maxWidth: "78%",
       p: 0,
       m: "0 auto",
+      pt: { md: 0.2 },
       position: { xs: "absolute", md: "static" },
-      top: "18%",
+      bottom: "60%",
       left: 0,
       right: 0,
       justifyContent: "center",
@@ -42,7 +43,7 @@ export default function Header() {
       position="relative"
       component="header"
       sx={() => ({
-        width: { md: "30%" },
+        width: { sm: "20", md: "30%" },
         p: 0,
         m: 0,
         flexShrink: 1,

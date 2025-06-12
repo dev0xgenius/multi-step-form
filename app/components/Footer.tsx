@@ -7,10 +7,11 @@ export const footerStyles = {
   p: 2,
   px: { md: 4 },
   m: "auto",
-  mb: 0,
+  mb: { xs: 0, sm: 2, md: 0 },
   justifyContent: "space-between",
   bgcolor: "neutral.white",
   zIndex: 1,
+  borderRadius: { sm: 1 },
 } as const;
 
 export default function Footer() {
@@ -20,12 +21,21 @@ export default function Footer() {
     navigate(-1);
   }, []);
 
+  const isOnLastRoute = location?.pathname == "/summary";
+  const isOnConfirmationRoute = location?.pathname == "/summary/confirmed";
+
   return (
-    <Stack direction="row" {...footerStyles}>
+    <Stack
+      direction="row"
+      {...footerStyles}
+      visibility={isOnConfirmationRoute ? "hidden" : undefined}
+    >
       <Button
         sx={{
-          visibility: location?.pathname == "/" ? "hidden" : "initial",
+          visibility: location?.pathname == "/" ? "hidden" : undefined,
           color: "neutral.coolGray",
+          fontSize: { md: 17 },
+          "&:hover": { color: "primary.main" },
         }}
         onClick={goBack}
       >
@@ -36,8 +46,22 @@ export default function Footer() {
         variant="contained"
         form="currentForm"
         id="submitBtn"
+        color={isOnLastRoute ? "secondary" : undefined}
+        sx={(theme) => ({
+          "&:hover": {
+            boxShadow: "none",
+            opacity: 0.8,
+          },
+          [`${theme.breakpoints.up("md")}`]: {
+            fontSize: 17,
+            borderRadius: 1,
+            px: 4,
+            py: 1.25,
+            color: "neutral.alabaster",
+          },
+        })}
       >
-        {location?.pathname == "/summary" ? "Confirm" : "Next Step"}
+        {isOnLastRoute ? "Confirm" : "Next Step"}
       </Button>
     </Stack>
   );

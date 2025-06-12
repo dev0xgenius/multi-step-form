@@ -11,7 +11,7 @@ const styling = (theme: Theme) => ({
   width: "100%",
   height: "100%",
   m: "0 auto",
-  mt: { xs: "-28%", md: "0" },
+  mt: { xs: "-28%", sm: "-32%", md: 0 },
   p: { xs: 1.5, md: 0 },
   px: 0.75,
   boxShadow: {

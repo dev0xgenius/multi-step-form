@@ -25,6 +25,7 @@ export default function ContactPage() {
     mode: "onChange",
     shouldFocusError: true,
     resolver: zodResolver(ContactFormSchema),
+
     defaultValues: { ...contact },
   });
 
@@ -53,7 +54,7 @@ export default function ContactPage() {
       description="Please provide your name, email address and phone number"
     >
       <form id="currentForm" onSubmit={handleSubmit(handleSubmitData)}>
-        <Stack direction="column" spacing={{ xs: 0 }}>
+        <Stack direction="column" spacing={{ xs: 0, md: 1 }}>
           <Controller
             name={"name"}
             control={control}
